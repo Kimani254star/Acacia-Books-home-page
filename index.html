@@ -1,3777 +1,1184 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Acacia Books ERP | Enterprise Resource Planning Platform</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'cambria', sans-serif;
+            scroll-behavior: smooth;
+        }
 
-<meta charset="UTF-8">
+        body {
+            background: #ffffff;
+            color: #1e293b;
+            overflow-x: hidden;
+            line-height: 1.5;
+        }
 
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+        a {
+            text-decoration: none;
+        }
 
-<title>Acacia Books ERP | Enterprise Resource Planning Platform</title>
+        ul {
+            list-style: none;
+        }
 
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 80px;
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(20px);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 5%;
+            z-index: 1000;
+            border-bottom: 1px solid #f1f5f9;
+        }
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
 
-<style>
+        .logo img {
+            width: 44px;
+            height: 44px;
+            object-fit: contain;
+        }
 
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
- font-family: 'Cambria', serif !important;
-scroll-behavior:smooth;
-}
+        .logoText h2 {
+            font-size: 22px;
+            font-weight: 800;
+            color: #0f172a;
+            letter-spacing: -0.5px;
+        }
 
-body{
-background:#ffffff;
-color:#1f2937;
-overflow-x:hidden;
-}
+        .logoText span {
+            display: block;
+            font-size: 11px;
+            font-weight: 500;
+            color: #64748b;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
 
-a{
-text-decoration:none;
-}
+        nav ul {
+            display: flex;
+            align-items: center;
+            gap: 32px;
+        }
 
-ul{
-list-style:none;
-}
+        nav a {
+            font-size: 15px;
+            font-weight: 500;
+            color: #475569;
+            transition: color 0.2s;
+        }
 
-header{
-position:fixed;
-top:0;
-left:0;
-width:100%;
-height:82px;
-background:rgba(255,255,255,.96);
-backdrop-filter:blur(16px);
-display:flex;
-align-items:center;
-justify-content:space-between;
-padding:0 70px;
-z-index:1000;
-box-shadow:0 5px 20px rgba(0,0,0,.08);
-}
+        nav a:hover {
+            color: #2563eb;
+        }
 
-.logo{
-display:flex;
-align-items:center;
-gap:14px;
-}
+        .actions {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
 
-.logo img{
-width:55px;
-height:55px;
-}
+        .signIn {
+            font-size: 15px;
+            font-weight: 600;
+            color: #0f172a;
+            padding: 10px 20px;
+            transition: all 0.2s;
+        }
 
-.logoText h2{
-font-size:28px;
-font-weight:800;
-color:#062B69;
-line-height:1;
-}
+        .signIn:hover {
+            color: #2563eb;
+        }
 
-.logoText span{
-display:block;
-font-size:13px;
-font-weight:600;
-color:#6B7280;
-margin-top:4px;
-}
+        .getStarted {
+            padding: 12px 24px;
+            border-radius: 8px;
+            background: #2563eb;
+            color: #fff;
+            font-size: 15px;
+            font-weight: 600;
+            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2);
+            transition: all 0.2s;
+        }
 
-nav ul{
-display:flex;
-align-items:center;
-gap:32px;
-}
+        .getStarted:hover {
+            background: #1d4ed8;
+            transform: translateY(-1px);
+        }
 
-nav a{
-font-size:15px;
-font-weight:600;
-color:#374151;
-transition:.3s;
-}
+        .hero {
+            margin-top: 80px;
+            min-height: 85vh;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 80px 5%;
+            background: radial-gradient(100% 100% at 50% 0%, rgba(219, 234, 254, 0.25) 0%, rgba(255, 255, 255, 0) 100%), #ffffff;
+            position: relative;
+        }
 
-nav a:hover{
-color:#2563EB;
-}
+        .leftHero {
+            width: 50%;
+            position: relative;
+            z-index: 2;
+        }
 
-.actions{
-display:flex;
-align-items:center;
-gap:16px;
-}
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 14px;
+            background: #eff6ff;
+            border: 1px solid #bfdbfe;
+            border-radius: 99px;
+            font-size: 13px;
+            font-weight: 600;
+            color: #2563eb;
+            margin-bottom: 24px;
+        }
 
-.searchBtn{
-width:44px;
-height:44px;
-border-radius:50%;
-display:flex;
-align-items:center;
-justify-content:center;
-background:#F3F4F6;
-color:#062B69;
-font-size:18px;
-transition:.3s;
-}
+        .leftHero h1 {
+            font-size: 54px;
+            font-weight: 800;
+            line-height: 1.15;
+            color: #0f172a;
+            letter-spacing: -1px;
+            margin-bottom: 24px;
+        }
 
-.searchBtn:hover{
-background:#2563EB;
-color:#fff;
-}
+        .leftHero p {
+            font-size: 18px;
+            line-height: 1.6;
+            color: #475569;
+            margin-bottom: 36px;
+        }
 
-.signIn{
-padding:12px 24px;
-border:2px solid #2563EB;
-border-radius:10px;
-color:#2563EB;
-font-weight:700;
-transition:.3s;
-}
+        .heroButtons {
+            display: flex;
+            gap: 16px;
+        }
 
-.signIn:hover{
-background:#2563EB;
-color:#fff;
-}
+        .primary {
+            padding: 14px 28px;
+            background: #2563eb;
+            border-radius: 8px;
+            color: #fff;
+            font-size: 16px;
+            font-weight: 600;
+            box-shadow: 0 10px 20px rgba(37, 99, 235, 0.15);
+            transition: all 0.2s;
+        }
 
-.getStarted{
-padding:13px 26px;
-border-radius:10px;
-background:#062B69;
-color:#fff;
-font-weight:700;
-transition:.3s;
-}
+        .primary:hover {
+            background: #1d4ed8;
+            transform: translateY(-2px);
+        }
 
-.getStarted:hover{
-background:#2563EB;
-}
+        .secondary {
+            padding: 14px 28px;
+            border: 1px solid #cbd5e1;
+            background: #fff;
+            border-radius: 8px;
+            color: #334155;
+            font-size: 16px;
+            font-weight: 600;
+            transition: all 0.2s;
+        }
 
-.hero{
-margin-top:82px;
-min-height:95vh;
-display:flex;
-align-items:center;
-justify-content:space-between;
-padding:90px 80px;
-background:linear-gradient(135deg,#062B69,#2563EB);
-position:relative;
-overflow:hidden;
-}
+        .secondary:hover {
+            background: #f8fafc;
+            border-color: #94a3b8;
+        }
 
-.hero::before{
-content:"";
-position:absolute;
-width:850px;
-height:850px;
-background:rgba(255,255,255,.05);
-border-radius:50%;
-right:-250px;
-top:-260px;
-}
+        .rightHero {
+            width: 44%;
+            display: flex;
+            justify-content: center;
+            position: relative;
+            z-index: 2;
+        }
 
-.hero::after{
-content:"";
-position:absolute;
-width:600px;
-height:600px;
-background:rgba(255,255,255,.04);
-border-radius:50%;
-left:-220px;
-bottom:-220px;
-}
+        .preview {
+            width: 100%;
+            max-width: 480px;
+            background: #fff;
+            border-radius: 16px;
+            padding: 32px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.08);
+            border: 1px solid #f1f5f9;
+        }
 
-.leftHero{
-width:56%;
-position:relative;
-z-index:2;
-color:#fff;
-}
+        .preview h2 {
+            font-size: 22px;
+            color: #0f172a;
+            margin-bottom: 24px;
+            font-weight: 700;
+        }
 
-.badge{
-display:inline-flex;
-align-items:center;
-gap:10px;
-padding:10px 18px;
-background:rgba(255,255,255,.12);
-border:1px solid rgba(255,255,255,.15);
-border-radius:40px;
-font-size:14px;
-font-weight:700;
-margin-bottom:30px;
-}
+        .item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px;
+            background: #f8fafc;
+            border-radius: 8px;
+            margin-bottom: 12px;
+            border: 1px solid #f1f5f9;
+        }
 
-.leftHero h1{
-font-size:68px;
-font-weight:800;
-line-height:1.08;
-margin-bottom:28px;
-}
+        .item span {
+            font-size: 14px;
+            font-weight: 500;
+            color: #64748b;
+        }
 
-.leftHero p{
-font-size:21px;
-line-height:1.8;
-max-width:760px;
-opacity:.95;
-margin-bottom:45px;
-}
+        .item strong {
+            font-size: 24px;
+            color: #2563eb;
+            font-weight: 700;
+        }
 
-.heroButtons{
-display:flex;
-gap:20px;
-}
+        .float {
+            position: absolute;
+            background: #fff;
+            padding: 12px 20px;
+            border-radius: 99px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+            font-weight: 600;
+            font-size: 14px;
+            color: #1e293b;
+            border: 1px solid #e2e8f0;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
 
-.primary{
-padding:18px 36px;
-background:#fff;
-border-radius:10px;
-color:#062B69;
-font-size:18px;
-font-weight:700;
-transition:.3s;
-}
+        .float i { color: #2563eb; }
+        .float1 { left: -20px; top: 60px; }
+        .float2 { right: -20px; bottom: 60px; }
 
-.primary:hover{
-transform:translateY(-5px);
-}
+        .section { padding: 100px 5%; }
+        .section-alt { padding: 100px 5%; background: #f8fafc; border-top: 1px solid #f1f5f9; border-bottom: 1px solid #f1f5f9; }
+        
+        .sectionTitle { text-align: center; margin-bottom: 60px; }
+        .sectionTitle span { display: inline-block; padding: 6px 14px; background: #dbeafe; color: #2563eb; border-radius: 99px; font-size: 13px; font-weight: 600; margin-bottom: 16px; text-transform: uppercase; letter-spacing: 0.5px; }
+        .sectionTitle h2 { font-size: 38px; font-weight: 800; color: #0f172a; margin-bottom: 16px; letter-spacing: -0.5px; }
+        .sectionTitle p { max-width: 700px; margin: auto; font-size: 17px; line-height: 1.6; color: #64748b; }
 
-.secondary{
-padding:18px 36px;
-border:2px solid #fff;
-border-radius:10px;
-color:#fff;
-font-size:18px;
-font-weight:700;
-transition:.3s;
-}
+        .solutions-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; }
+        .solution-card { background: #fff; padding: 32px; border-radius: 12px; border: 1px solid #e2e8f0; transition: all 0.3s; }
+        .solution-card:hover { border-color: #2563eb; box-shadow: 0 12px 30px rgba(0,0,0,0.04); transform: translateY(-2px); }
+        .solution-card .sol-icon { width: 48px; height: 48px; background: #eff6ff; color: #2563eb; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 20px; margin-bottom: 20px; }
+        .solution-card h3 { font-size: 20px; font-weight: 700; color: #0f172a; margin-bottom: 12px; }
+        .solution-card p { font-size: 15px; color: #64748b; line-height: 1.6; }
 
-.secondary:hover{
-background:#fff;
-color:#062B69;
-}
+        .modules { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
+        .module { background: #fff; border-radius: 12px; padding: 32px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.02); transition: all 0.3s; border: 1px solid #e2e8f0; display: flex; flex-direction: column; }
+        .module:hover { transform: translateY(-4px); box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.05); border-color: #2563eb; }
+        
+        .icon { width: 56px; height: 56px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 22px; margin-bottom: 20px; }
+        .blue { background: #eff6ff; color: #2563eb; }
+        .green { background: #f0fdf4; color: #16a34a; }
+        .orange { background: #fff7ed; color: #ea580c; }
+        .purple { background: #faf5ff; color: #7c3aed; }
+        .cyan { background: #ecfeff; color: #0891b2; }
+        .rose { background: #fff1f2; color: #f43f5e; }
 
-.rightHero{
-width:40%;
-display:flex;
-justify-content:center;
-position:relative;
-z-index:2;
-}
+        .module h3 { font-size: 22px; color: #0f172a; margin-bottom: 12px; font-weight: 700; }
+        .module p { font-size: 15px; line-height: 1.6; color: #64748b; margin-bottom: 20px; }
+        
+        .features { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin-bottom: 24px; }
+        .features div { background: #f8fafc; padding: 8px 12px; border-radius: 6px; font-size: 13px; font-weight: 500; color: #475569; border: 1px solid #f1f5f9; }
+        
+        .learn { margin-top: auto; display: flex; justify-content: space-between; align-items: center; padding-top: 12px; border-top: 1px solid #f1f5f9; }
+        .learn a { font-size: 14px; color: #2563eb; font-weight: 600; }
+        .learn i { font-size: 14px; color: #64748b; transition: transform 0.2s; }
+        .module:hover .learn i { transform: translateX(4px); color: #2563eb; }
 
-.preview{
-width:520px;
-background:#fff;
-border-radius:22px;
-padding:35px;
-box-shadow:0 40px 80px rgba(0,0,0,.25);
-}
+        .about-wrapper { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+        .about-content h3 { font-size: 28px; font-weight: 700; color: #0f172a; margin-bottom: 16px; }
+        .about-content p { font-size: 16px; color: #64748b; line-height: 1.7; margin-bottom: 20px; }
+        .about-stats { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+        .about-stat-box { background: #fff; padding: 24px; border-radius: 12px; border: 1px solid #e2e8f0; }
+        .about-stat-box h4 { font-size: 32px; color: #2563eb; font-weight: 800; margin-bottom: 4px; }
+        .about-stat-box p { font-size: 14px; color: #475569; font-weight: 500; margin: 0; }
 
-.preview h2{
-font-size:28px;
-color:#062B69;
-margin-bottom:30px;
-}
+        .pricing-section-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+        }
+        
+        .pricing-controls-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 48px;
+            background: #fff;
+            padding: 24px 32px;
+            border-radius: 16px;
+            border: 1px solid #e2e8f0;
+            width: 100%;
+            max-width: 650px;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.02);
+        }
 
-.item{
-display:flex;
-justify-content:space-between;
-align-items:center;
-padding:18px;
-background:#F8FAFC;
-border-radius:12px;
-margin-bottom:15px;
-}
+        .module-tabs {
+            display: flex;
+            background: #f1f5f9;
+            padding: 6px;
+            border-radius: 10px;
+            width: 100%;
+        }
 
-.item span{
-font-size:15px;
-font-weight:700;
-color:#4B5563;
-}
+        .module-tab-btn {
+            flex: 1;
+            padding: 10px 16px;
+            border: none;
+            background: transparent;
+            font-size: 14px;
+            font-weight: 600;
+            color: #64748b;
+            cursor: pointer;
+            border-radius: 8px;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
 
-.item strong{
-font-size:30px;
-color:#2563EB;
-}
+        .module-tab-btn.active {
+            background: #fff;
+            color: #2563eb;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
 
-.float{
-position:absolute;
-background:#fff;
-padding:16px 24px;
-border-radius:14px;
-box-shadow:0 18px 35px rgba(0,0,0,.15);
-font-weight:700;
-animation:float 4s ease-in-out infinite;
-}
+        .pricing-controls {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 24px;
+        }
+        
+        .control-group {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .control-group span {
+            font-size: 15px;
+            font-weight: 600;
+            color: #334155;
+        }
+        
+        .switch {
+            position: relative;
+            width: 50px;
+            height: 26px;
+        }
+        
+        .switch input { display: none; }
+        
+        .slider {
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: #cbd5e1;
+            border-radius: 34px;
+            cursor: pointer;
+            transition: .3s;
+        }
+        
+        .slider:before {
+            content: "";
+            position: absolute;
+            width: 18px;
+            height: 18px;
+            left: 4px;
+            top: 4px;
+            background: #fff;
+            border-radius: 50%;
+            transition: .3s;
+        }
+        
+        input:checked + .slider { background: #2563eb; }
+        input:checked + .slider:before { transform: translateX(24px); }
 
-.float1{
-left:-40px;
-top:120px;
-}
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-bottom: 40px;
+            width: 100%;
+        }
+        
+        .pricing-card {
+            background: #fff;
+            border-radius: 16px;
+            padding: 40px 32px;
+            border: 1px solid #e2e8f0;
+            display: flex;
+            flex-direction: column;
+            transition: all 0.3s;
+            position: relative;
+        }
+        
+        .pricing-card.featured {
+            border-color: #2563eb;
+            box-shadow: 0 20px 40px rgba(37, 99, 235, 0.06);
+        }
+        
+        .pricing-card.featured .badge-pop {
+            position: absolute;
+            top: -14px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #2563eb;
+            color: #fff;
+            padding: 4px 14px;
+            border-radius: 999px;
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .pricing-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 30px rgba(0,0,0,0.04);
+        }
+        
+        .pricing-card h3 {
+            font-size: 22px;
+            color: #0f172a;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+        
+        .price-display { margin-bottom: 24px; }
+        .price-display h4 { font-size: 36px; font-weight: 800; color: #0f172a; letter-spacing: -1px; }
+        .price-display span { font-size: 14px; color: #64748b; font-weight: 500; }
+        
+        .pricing-card ul {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            margin-bottom: 36px;
+            border-top: 1px solid #f1f5f9;
+            padding-top: 24px;
+        }
+        
+        .pricing-card ul li {
+            display: flex;
+            align-items: start;
+            gap: 12px;
+            font-size: 14px;
+            color: #475569;
+            line-height: 1.4;
+        }
+        
+        .pricing-card ul li i {
+            font-size: 16px;
+            margin-top: 2px;
+            color: #2563eb;
+        }
+        
+        .pricing-card ul li.none { color: #94a3b8; }
+        .pricing-card ul li.none i { color: #cbd5e1; }
+        
+        .btn-select {
+            display: block;
+            text-align: center;
+            padding: 14px;
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            color: #0f172a;
+            border-radius: 8px;
+            font-size: 15px;
+            font-weight: 600;
+            transition: all 0.2s;
+            margin-top: auto;
+        }
+        
+        .btn-select:hover { background: #2563eb; border-color: #2563eb; color: #fff; }
+        .pricing-card.featured .btn-select { background: #2563eb; border-color: #2563eb; color: #fff; }
+        .pricing-card.featured .btn-select:hover { background: #1d4ed8; border-color: #1d4ed8; }
 
-.float2{
-right:-40px;
-bottom:110px;
-}
+        .support-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
+        .support-card { background: #fff; padding: 28px; border-radius: 12px; border: 1px solid #e2e8f0; text-align: center; transition: all 0.2s; }
+        .support-card:hover { border-color: #2563eb; box-shadow: 0 10px 25px rgba(0,0,0,0.03); }
+        .support-card i { font-size: 28px; color: #2563eb; margin-bottom: 16px; }
+        .support-card h4 { font-size: 16px; font-weight: 700; color: #0f172a; margin-bottom: 8px; }
+        .support-card p { font-size: 13px; color: #64748b; margin-bottom: 16px; }
+        .support-card a { font-size: 13px; font-weight: 600; color: #2563eb; }
 
-@keyframes float{
-0%{transform:translateY(0);}
-50%{transform:translateY(-15px);}
-100%{transform:translateY(0);}
-}
+        .cta { padding: 100px 5%; background: #0f172a; color: #fff; position: relative; overflow: hidden; }
+        .ctaBox { max-width: 1200px; margin: auto; display: grid; grid-template-columns: 1.5fr 1fr; gap: 80px; align-items: center; }
+        .cta h2 { font-size: 42px; font-weight: 800; letter-spacing: -1px; margin-bottom: 20px; }
+        .cta p { font-size: 18px; color: #94a3b8; line-height: 1.6; margin-bottom: 32px; }
+        .ctaButtons { display: flex; gap: 16px; }
+        .ctaPrimary { background: #2563eb; color: #fff; padding: 14px 28px; border-radius: 8px; font-weight: 600; }
+        .ctaSecondary { border: 1px solid #334155; color: #fff; padding: 14px 28px; border-radius: 8px; font-weight: 600; }
+        .ctaCard { background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.08); padding: 32px; border-radius: 16px; }
+        .ctaCard h3 { font-size: 20px; margin-bottom: 24px; font-weight: 700; }
+        .ctaItem { display: flex; justify-content: space-between; padding: 12px 0; border-bottom: 1px solid rgba(255, 255, 255, 0.08); font-size: 14px; color: #cbd5e1; }
+        .ctaItem:last-child { border: none; }
 
-</style>
+        footer { background: #020617; color: #94a3b8; padding: 80px 5% 30px; border-top: 1px solid #0f172a; }
+        .footerGrid { display: grid; grid-template-columns: 2fr repeat(4, 1fr); gap: 40px; margin-bottom: 60px; }
+        .footerLogo h2 { font-size: 24px; font-weight: 800; color: #fff; margin-bottom: 16px; }
+        .footerLogo p { font-size: 14px; line-height: 1.6; }
+        .social { display: flex; gap: 12px; margin-top: 24px; }
+        .social a { width: 36px; height: 36px; border-radius: 6px; background: #0f172a; display: flex; align-items: center; justify-content: center; color: #cbd5e1; font-size: 16px; }
+        .social a:hover { background: #2563eb; color: #fff; }
+        .footerColumn h3 { font-size: 14px; color: #fff; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 20px; }
+        .footerColumn ul { display: flex; flex-direction: column; gap: 12px; }
+        .footerColumn a { color: #94a3b8; font-size: 14px; }
+        .footerColumn a:hover { color: #fff; }
+        .bottomFooter { border-top: 1px solid #0f172a; padding-top: 30px; display: flex; justify-content: space-between; font-size: 13px; }
 
+        @media(max-width: 1200px) {
+            .pricing-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media(max-width: 1024px) {
+            .hero { flex-direction: column; text-align: center; padding-top: 60px; }
+            .leftHero, .rightHero, .about-wrapper, .ctaBox { width: 100%; grid-template-columns: 1fr; }
+            .modules, .solutions-grid { grid-template-columns: repeat(2, 1fr); }
+            .support-grid { grid-template-columns: repeat(2, 1fr); }
+            .footerGrid { grid-template-columns: 1fr; }
+        }
+        @media(max-width: 768px) {
+            .pricing-grid { grid-template-columns: 1fr; }
+        }
+        @media(max-width: 640px) {
+            .modules, .solutions-grid, .support-grid { grid-template-columns: 1fr; }
+            .leftHero h1 { font-size: 36px; }
+            .pricing-controls-wrapper { padding: 16px; }
+            .pricing-controls { flex-direction: column; gap: 16px; }
+            .module-tabs { flex-direction: column; gap: 4px; }
+        }
+    </style>
 </head>
-
 <body>
 
-<header>
-
-<div class="logo">
-
-<img src="acaciabooks-logo.png">
-
-<div class="logoText">
-
-<h2>Acacia Books</h2>
-
-<span>Enterprise Resource Planning Platform</span>
-
-</div>
-
-</div>
-
-<nav>
-
-<ul>
-
-<li><a href="#">Home</a></li>
-
-<li><a href="#platform">Platform</a></li>
-
-<li><a href="#modules">Modules</a></li>
-
-<li><a href="#solutions">Solutions</a></li>
-
-<li><a href="#pricing">Pricing</a></li>
-
-<li><a href="#support">Support</a></li>
-
-<li><a href="#about">About</a></li>
-
-<li><a href="#contact">Contact</a></li>
-
-</ul>
-
-</nav>
-
-<div class="actions">
-
-<a href="#" class="searchBtn"><i class="fa-solid fa-magnifying-glass"></i></a>
-<a href="https://kimani254star.github.io/acacia-books/" class="signIn">Sign In</a>
-
-<a href="#modules" class="getStarted">Explore ERP</a>
-
-</div>
-
-</header>
-
-<section class="hero">
-
-<div class="leftHero">
-
-<div class="badge">
-
-<i class="fa-solid fa-shield-halved"></i>
-
-Trusted Enterprise Platform
-
-</div>
-
-<h1>Manage Your Entire Organization From One Powerful ERP Platform</h1>
-
-<p>
-
-Acacia Books ERP brings together Library Management, CRM, Mail Center, Projects, Inventory, Sales, Expenses, Reports and AI into one secure cloud platform for organizations of every size.
-
-</p>
-
-<div class="heroButtons">
-
-<a href="#modules" class="primary">Explore Modules</a>
-
-<a href="login.html" class="secondary">Sign In</a>
-
-</div>
-
-</div>
-
-<div class="rightHero">
-
-<div class="preview">
-
-<h2>Platform Overview</h2>
-
-<div class="item">
-
-<span>Organizations</span>
-
-<strong>500+</strong>
-
-</div>
-
-<div class="item">
-
-<span>Active Users</span>
-
-<strong>25K+</strong>
-
-</div>
-
-<div class="item">
-
-<span>Books Managed</span>
-
-<strong>1M+</strong>
-
-</div>
-
-<div class="item">
-
-<span>Availability</span>
-
-<strong>99.9%</strong>
-
-</div>
-
-</div>
-
-<div class="float float1">
-📚 Library Management
-</div>
-
-<div class="float float2">
-🤖 AI Powered
-</div>
-
-</div>
-
-</section>
-<style>
-
-.section{
-padding:100px 80px;
-}
-
-.sectionTitle{
-text-align:center;
-margin-bottom:20px;
-}
-
-.sectionTitle span{
-display:inline-block;
-padding:10px 18px;
-background:#dbeafe;
-color:#2563EB;
-border-radius:30px;
-font-size:14px;
-font-weight:700;
-margin-bottom:20px;
-}
-
-.sectionTitle h2{
-font-size:48px;
-font-weight:800;
-color:#062B69;
-margin-bottom:20px;
-}
-
-.sectionTitle p{
-max-width:900px;
-margin:auto;
-font-size:19px;
-line-height:34px;
-color:#6B7280;
-}
-
-.modules{
-display:grid;
-grid-template-columns:repeat(3,1fr);
-gap:30px;
-margin-top:70px;
-}
-
-.module{
-background:#fff;
-border-radius:22px;
-padding:35px;
-box-shadow:0 10px 35px rgba(0,0,0,.08);
-transition:.35s;
-border:1px solid #edf2f7;
-display:flex;
-flex-direction:column;
-}
-
-.module:hover{
-transform:translateY(-10px);
-box-shadow:0 20px 45px rgba(0,0,0,.12);
-}
-
-.icon{
-width:80px;
-height:80px;
-border-radius:18px;
-display:flex;
-align-items:center;
-justify-content:center;
-font-size:34px;
-color:#fff;
-margin-bottom:25px;
-}
-
-.blue{background:#2563EB;}
-.green{background:#16A34A;}
-.orange{background:#EA580C;}
-.red{background:#DC2626;}
-.purple{background:#7C3AED;}
-.cyan{background:#0891B2;}
-.indigo{background:#4338CA;}
-.gray{background:#475569;}
-
-.module h3{
-font-size:28px;
-color:#062B69;
-margin-bottom:18px;
-}
-
-.module p{
-font-size:16px;
-line-height:30px;
-color:#6B7280;
-margin-bottom:25px;
-}
-
-.features{
-display:grid;
-grid-template-columns:repeat(2,1fr);
-gap:12px;
-margin-bottom:30px;
-}
-
-.features div{
-background:#F8FAFC;
-padding:10px 14px;
-border-radius:10px;
-font-size:14px;
-font-weight:600;
-color:#374151;
-}
-
-.learn{
-margin-top:auto;
-display:flex;
-justify-content:space-between;
-align-items:center;
-}
-
-.learn a{
-padding:13px 22px;
-background:#062B69;
-color:#fff;
-border-radius:10px;
-font-weight:700;
-}
-
-.learn i{
-font-size:22px;
-color:#2563EB;
-}
-
-</style>
-
-<section class="section" id="modules">
-
-<div class="sectionTitle">
-
-<span>Enterprise Modules</span>
-
-<h2>Everything You Need In One ERP Platform</h2>
-
-<p>
-
-Acacia Books ERP combines every department into one intelligent platform, giving your organization complete control over operations, communication, finance and growth.
-
-</p>
-
-</div>
-
-<div class="modules">
-
-<div class="module">
-
-<div class="icon blue">
-📚
-</div>
-
-<h3>Library Management</h3>
-
-<p>Manage books, circulation, members, digital resources, cataloguing and reporting from one modern library platform.</p>
-
-<div class="features">
-
-<div>Book Catalog</div>
-<div>Members</div>
-<div>Borrowing</div>
-<div>Digital Library</div>
-<div>Barcodes</div>
-<div>Reports</div>
-
-</div>
-
-<div class="learn">
-
-<a href="login.html">Open Module</a>
-
-<i class="fa-solid fa-arrow-right"></i>
-
-</div>
-
-</div>
-
-<div class="module">
-
-<div class="icon green">
-👥
-</div>
-
-<h3>CRM</h3>
-
-<p>Manage customers, leads, opportunities, quotations, contracts and customer engagement from a single workspace.</p>
-
-<div class="features">
-
-<div>Customers</div>
-<div>Leads</div>
-<div>Opportunities</div>
-<div>Contracts</div>
-<div>Tasks</div>
-<div>Calendar</div>
-
-</div>
-
-<div class="learn">
-
-<a href="login.html">Open Module</a>
-
-<i class="fa-solid fa-arrow-right"></i>
-
-</div>
-
-</div>
-
-<div class="module">
-
-<div class="icon orange">
-📧
-</div>
-
-<h3>Mail Center</h3>
-
-<p>Professional business communication with email management, contacts, attachments and AI-powered productivity.</p>
-
-<div class="features">
-
-<div>Inbox</div>
-<div>Compose</div>
-<div>Contacts</div>
-<div>Calendar</div>
-<div>Attachments</div>
-<div>AI Assistant</div>
-
-</div>
-
-<div class="learn">
-
-<a href="login.html">Open Module</a>
-
-<i class="fa-solid fa-arrow-right"></i>
-
-</div>
-
-</div>
-
-<div class="module">
-
-<div class="icon purple">
-📁
-</div>
-
-<h3>Projects</h3>
-
-<p>Plan projects, assign work, monitor milestones, manage revenue and track project performance.</p>
-
-<div class="features">
-
-<div>Projects</div>
-<div>Milestones</div>
-<div>Revenue</div>
-<div>Tasks</div>
-<div>Teams</div>
-<div>Reports</div>
-
-</div>
-
-<div class="learn">
-
-<a href="login.html">Open Module</a>
-
-<i class="fa-solid fa-arrow-right"></i>
-
-</div>
-
-</div>
-
-<div class="module">
-
-<div class="icon cyan">
-📦
-</div>
-
-<h3>Inventory</h3>
-
-<p>Track stock, warehouses, suppliers and inventory movements with complete visibility across locations.</p>
-
-<div class="features">
-
-<div>Products</div>
-<div>Warehouses</div>
-<div>Suppliers</div>
-<div>Purchasing</div>
-<div>Stock Levels</div>
-<div>Transfers</div>
-
-</div>
-
-<div class="learn">
-
-<a href="login.html">Open Module</a>
-
-<i class="fa-solid fa-arrow-right"></i>
-
-</div>
-
-</div>
-
-<div class="module">
-
-<div class="icon red">
-💰
-</div>
-
-<h3>Expenses & Sales</h3>
-
-<p>Control expenses, quotations, sales orders, invoices, payments and business profitability in one place.</p>
-
-<div class="features">
-
-<div>Expenses</div>
-<div>Sales</div>
-<div>Invoices</div>
-<div>Payments</div>
-<div>Revenue</div>
-<div>Analytics</div>
-
-</div>
-
-<div class="learn">
-
-<a href="login.html">Open Module</a>
-
-<i class="fa-solid fa-arrow-right"></i>
-
-</div>
-
-</div>
-
-</div>
-
-</section>
-<style>
-
-.pricing{
-padding:110px 80px;
-background:#f8fafc;
-}
-
-.pricingHeader{
-text-align:center;
-max-width:900px;
-margin:auto auto 70px;
-}
-
-.pricingHeader span{
-display:inline-block;
-padding:10px 18px;
-background:#dbeafe;
-color:#2563eb;
-border-radius:30px;
-font-size:14px;
-font-weight:700;
-margin-bottom:20px;
-}
-
-.pricingHeader h2{
-font-size:52px;
-font-weight:800;
-color:#062B69;
-margin-bottom:20px;
-}
-
-.pricingHeader p{
-font-size:19px;
-line-height:34px;
-color:#6b7280;
-}
-
-.billing{
-display:flex;
-justify-content:center;
-align-items:center;
-gap:20px;
-margin-bottom:60px;
-}
-
-.billing span{
-font-size:18px;
-font-weight:700;
-color:#374151;
-}
-
-.switch{
-position:relative;
-width:70px;
-height:36px;
-}
-
-.switch input{
-display:none;
-}
-
-.slider{
-position:absolute;
-top:0;
-left:0;
-right:0;
-bottom:0;
-background:#d1d5db;
-border-radius:40px;
-cursor:pointer;
-transition:.3s;
-}
-
-.slider:before{
-content:"";
-position:absolute;
-width:28px;
-height:28px;
-left:4px;
-top:4px;
-background:#fff;
-border-radius:50%;
-transition:.3s;
-}
-
-input:checked+.slider{
-background:#2563eb;
-}
-
-input:checked+.slider:before{
-transform:translateX(34px);
-}
-
-.pricingGrid{
-display:grid;
-grid-template-columns:repeat(3,1fr);
-gap:35px;
-}
-
-.plan{
-background:#fff;
-border-radius:24px;
-padding:40px;
-box-shadow:0 15px 40px rgba(0,0,0,.08);
-position:relative;
-transition:.35s;
-border:2px solid transparent;
-}
-
-.plan:hover{
-transform:translateY(-10px);
-border-color:#2563eb;
-}
-
-.plan.popular{
-border:2px solid #2563eb;
-transform:scale(1.04);
-}
-
-.badge{
-position:absolute;
-top:-16px;
-right:30px;
-background:#2563eb;
-color:#fff;
-padding:8px 18px;
-border-radius:30px;
-font-size:13px;
-font-weight:700;
-}
-
-.plan h3{
-font-size:28px;
-color:#062B69;
-margin-bottom:12px;
-}
-
-.price{
-font-size:54px;
-font-weight:800;
-color:#2563eb;
-margin:20px 0 8px;
-}
-
-.price span{
-font-size:18px;
-color:#6b7280;
-font-weight:600;
-}
-
-.year{
-font-size:16px;
-color:#6b7280;
-margin-bottom:30px;
-}
-
-.features{
-display:grid;
-gap:15px;
-margin-bottom:35px;
-}
-
-.features div{
-display:flex;
-align-items:center;
-gap:12px;
-font-size:16px;
-color:#374151;
-font-weight:600;
-}
-
-.features i{
-color:#16a34a;
-}
-
-.plan a{
-display:block;
-text-align:center;
-padding:16px;
-background:#062B69;
-color:#fff;
-border-radius:12px;
-font-size:17px;
-font-weight:700;
-transition:.3s;
-}
-
-.plan a:hover{
-background:#2563eb;
-}
-
-@media(max-width:1100px){
-
-.pricingGrid{
-grid-template-columns:1fr;
-}
-
-.plan.popular{
-transform:none;
-}
-
-}
-
-</style>
-
-<section class="pricing" id="pricing">
-
-<div class="pricingHeader">
-
-<span>Pricing</span>
-
-<h2>Choose the Right Plan for Your Organization</h2>
-
-<p>
-
-Start free and upgrade as your organization grows. Every plan includes secure cloud hosting, automatic updates and access to the Acacia Books ERP platform.
-
-</p>
-
-</div>
-
-<div class="billing">
-
-<span>Monthly</span>
-
-<label class="switch">
-
-<input type="checkbox" id="billingToggle">
-
-<span class="slider"></span>
-
-</label>
-
-<span>Yearly <strong style="color:#16a34a;">Save 10%</strong></span>
-
-</div>
-
-<div class="pricingGrid">
-
-<div class="plan">
-
-<h3>Free</h3>
-
-<div class="price">
-KES 0
-<span>/month</span>
-</div>
-
-<div class="year">
-Forever Free
-</div>
-
-<div class="features">
-
-<div><i class="fa-solid fa-check"></i>Dashboard</div>
-<div><i class="fa-solid fa-check"></i>Funds (Basic)</div>
-<div><i class="fa-solid fa-check"></i>Reports (Basic)</div>
-<div><i class="fa-solid fa-check"></i>Inventory (Basic)</div>
-<div><i class="fa-solid fa-check"></i>Customers (Basic)</div>
-<div><i class="fa-solid fa-check"></i>Suppliers (Basic)</div>
-<div><i class="fa-solid fa-check"></i>Accountant (Basic)</div>
-<div><i class="fa-solid fa-check"></i>Settings (Basic)</div>
-<div><i class="fa-solid fa-check"></i>No Payroll</div>
-
-</div>
-
-<a href="login.html">
-Get Started
-</a>
-
-</div>
-
-<div class="plan">
-
-<h3>Starter</h3>
-
-<div class="price monthlyPrice">
-KES 2,000
-<span>/month</span>
-</div>
-
-<div class="year yearlyPrice">
-KES 21,600 / year
-</div>
-
-<div class="features">
-
-<div><i class="fa-solid fa-check"></i>Dashboard</div>
-<div><i class="fa-solid fa-check"></i>Funds</div>
-<div><i class="fa-solid fa-check"></i>Reports</div>
-<div><i class="fa-solid fa-check"></i>Inventory</div>
-<div><i class="fa-solid fa-check"></i>Customers</div>
-<div><i class="fa-solid fa-check"></i>Suppliers</div>
-<div><i class="fa-solid fa-check"></i>Accountant</div>
-<div><i class="fa-solid fa-check"></i>Payroll</div>
-<div><i class="fa-solid fa-check"></i>Settings</div>
-
-</div>
-
-<a href="login.html">
-Choose Starter
-</a>
-
-</div>
-
-<div class="plan popular">
-
-<div class="badge">
-Most Popular
-</div>
-
-<h3>Pro</h3>
-
-<div class="price monthlyPrice">
-KES 5,000
-<span>/month</span>
-</div>
-
-<div class="year yearlyPrice">
-KES 54,000 / year
-</div>
-
-<div class="features">
-
-<div><i class="fa-solid fa-check"></i>Everything in Starter</div>
-<div><i class="fa-solid fa-check"></i>Dashboard</div>
-<div><i class="fa-solid fa-check"></i>Funds</div>
-<div><i class="fa-solid fa-check"></i>Reports</div>
-<div><i class="fa-solid fa-check"></i>Inventory</div>
-<div><i class="fa-solid fa-check"></i>Customers</div>
-<div><i class="fa-solid fa-check"></i>Suppliers</div>
-<div><i class="fa-solid fa-check"></i>Accountant</div>
-<div><i class="fa-solid fa-check"></i>Payroll</div>
-<div><i class="fa-solid fa-check"></i>Settings</div>
-
-</div>
-
-<a href="login.html">
-Choose Pro
-</a>
-
-</div>
-
-<div class="plan">
-
-<h3>Business</h3>
-
-<div class="price monthlyPrice">
-KES 8,000
-<span>/month</span>
-</div>
-
-<div class="year yearlyPrice">
-KES 86,400 / year
-</div>
-
-<div class="features">
-
-<div><i class="fa-solid fa-check"></i>Dashboard</div>
-<div><i class="fa-solid fa-check"></i>Funds</div>
-<div><i class="fa-solid fa-check"></i>Reports</div>
-<div><i class="fa-solid fa-check"></i>Inventory</div>
-<div><i class="fa-solid fa-check"></i>Customers</div>
-<div><i class="fa-solid fa-check"></i>Suppliers</div>
-<div><i class="fa-solid fa-check"></i>Accountant</div>
-<div><i class="fa-solid fa-check"></i>Payroll</div>
-<div><i class="fa-solid fa-check"></i>Settings</div>
-
-</div>
-
-<a href="login.html">
-Choose Business
-</a>
-
-</div>
-
-<div class="plan">
-
-<h3>Enterprise</h3>
-
-<div class="price monthlyPrice">
-KES 12,000
-<span>/month</span>
-</div>
-
-<div class="year yearlyPrice">
-KES 129,600 / year
-</div>
-
-<div class="features">
-
-<div><i class="fa-solid fa-check"></i>Everything in Business</div>
-<div><i class="fa-solid fa-check"></i>Dashboard</div>
-<div><i class="fa-solid fa-check"></i>Funds</div>
-<div><i class="fa-solid fa-check"></i>Reports</div>
-<div><i class="fa-solid fa-check"></i>Inventory</div>
-<div><i class="fa-solid fa-check"></i>Customers</div>
-<div><i class="fa-solid fa-check"></i>Suppliers</div>
-<div><i class="fa-solid fa-check"></i>Accountant</div>
-<div><i class="fa-solid fa-check"></i>Payroll</div>
-<div><i class="fa-solid fa-check"></i>Settings</div>
-<div><i class="fa-solid fa-check"></i>Integrations & APIs</div>
-<div><i class="fa-solid fa-check"></i>On-Premise Deployment</div>
-
-</div>
-
-<a href="login.html">
-Choose Enterprise
-</a>
-
-</div>
-
-<div class="plan">
-
-<h3>All Access</h3>
-
-<div class="price monthlyPrice">
-KES 20,000
-<span>/month</span>
-</div>
-
-<div class="year yearlyPrice">
-KES 240,000 / year
-</div>
-
-<div class="features">
-
-<div><i class="fa-solid fa-check"></i>Everything in Enterprise</div>
-<div><i class="fa-solid fa-check"></i>Dashboard</div>
-<div><i class="fa-solid fa-check"></i>Funds</div>
-<div><i class="fa-solid fa-check"></i>Reports</div>
-<div><i class="fa-solid fa-check"></i>Inventory</div>
-<div><i class="fa-solid fa-check"></i>Customers</div>
-<div><i class="fa-solid fa-check"></i>Suppliers</div>
-<div><i class="fa-solid fa-check"></i>Accountant</div>
-<div><i class="fa-solid fa-check"></i>Payroll</div>
-<div><i class="fa-solid fa-check"></i>Settings</div>
-<div><i class="fa-solid fa-check"></i>Files</div>
-<div><i class="fa-solid fa-check"></i>Integrations & APIs</div>
-<div><i class="fa-solid fa-check"></i>Priority Support</div>
-
-</div>
-
-<a href="login.html">
-Choose All Access
-</a>
-
-</div>
-
-</div>
-
-</section>
-
-<script>
-
-const toggle=document.getElementById("billingToggle");
-
-toggle.addEventListener("change",function(){
-
-const prices=document.querySelectorAll(".monthlyPrice");
-const years=document.querySelectorAll(".yearlyPrice");
-
-const monthly=[
-2000,
-5000,
-8000,
-12000,
-20000
-];
-
-const yearly=[
-21600,
-54000,
-86400,
-129600,
-240000
-];
-
-const savings=[
-2400,
-6000,
-9600,
-14400,
-24000
-];
-
-for(let i=0;i<prices.length;i++){
-
-if(this.checked){
-
-prices[i].innerHTML=`KES ${yearly[i].toLocaleString()} <span>/year</span>`;
-years[i].innerHTML=`Save KES ${savings[i].toLocaleString()} every year`;
-
-}else{
-
-prices[i].innerHTML=`KES ${monthly[i].toLocaleString()} <span>/month</span>`;
-years[i].innerHTML=`KES ${yearly[i].toLocaleString()} / year`;
-
-}
-
-}
-
-});
-
-</script>
-<style>
-
-.platform{
-padding:110px 80px;
-background:#f8fafc;
-}
-
-.platformGrid{
-display:grid;
-grid-template-columns:1.1fr .9fr;
-gap:70px;
-align-items:center;
-}
-
-.platformText span{
-display:inline-block;
-padding:10px 18px;
-background:#dbeafe;
-color:#2563eb;
-font-weight:700;
-border-radius:30px;
-margin-bottom:22px;
-}
-
-.platformText h2{
-font-size:52px;
-font-weight:800;
-color:#062B69;
-margin-bottom:25px;
-line-height:1.2;
-}
-
-.platformText p{
-font-size:18px;
-line-height:34px;
-color:#6b7280;
-margin-bottom:35px;
-}
-
-.platformFeatures{
-display:grid;
-grid-template-columns:repeat(2,1fr);
-gap:18px;
-}
-
-.feature{
-display:flex;
-align-items:flex-start;
-gap:16px;
-background:#fff;
-padding:22px;
-border-radius:16px;
-box-shadow:0 8px 25px rgba(0,0,0,.06);
-}
-
-.feature i{
-width:55px;
-height:55px;
-display:flex;
-align-items:center;
-justify-content:center;
-background:#062B69;
-color:#fff;
-border-radius:14px;
-font-size:22px;
-}
-
-.feature h4{
-font-size:20px;
-color:#062B69;
-margin-bottom:8px;
-}
-
-.feature p{
-font-size:15px;
-line-height:26px;
-color:#6b7280;
-}
-
-.platformPreview{
-display:grid;
-gap:22px;
-}
-
-.previewCard{
-background:#fff;
-padding:28px;
-border-radius:20px;
-box-shadow:0 15px 40px rgba(0,0,0,.08);
-}
-
-.previewCard h3{
-font-size:24px;
-color:#062B69;
-margin-bottom:25px;
-}
-
-.progress{
-margin-bottom:22px;
-}
-
-.progressHead{
-display:flex;
-justify-content:space-between;
-font-weight:700;
-margin-bottom:10px;
-color:#374151;
-}
-
-.bar{
-height:10px;
-background:#e5e7eb;
-border-radius:30px;
-overflow:hidden;
-}
-
-.fill{
-height:100%;
-background:linear-gradient(90deg,#062B69,#2563eb);
-border-radius:30px;
-}
-
-.statsGrid{
-display:grid;
-grid-template-columns:repeat(2,1fr);
-gap:20px;
-margin-top:25px;
-}
-
-.statBox{
-background:#fff;
-padding:25px;
-border-radius:18px;
-text-align:center;
-box-shadow:0 10px 30px rgba(0,0,0,.08);
-}
-
-.statBox h2{
-font-size:40px;
-color:#2563eb;
-margin-bottom:8px;
-}
-
-.statBox p{
-font-size:15px;
-font-weight:600;
-color:#6b7280;
-}
-
-</style>
-
-<section class="platform" id="platform">
-
-<div class="platformGrid">
-
-<div class="platformText">
-
-<span>One Connected Platform</span>
-
-<h2>Every Department Connected In One Intelligent ERP</h2>
-
-<p>
-
-Acacia Books ERP connects every department into one secure cloud platform. Your library, customer relationships, projects, inventory, expenses, sales and communication work together in real time, eliminating duplicate work and giving management complete visibility across the organization.
-
-</p>
-
-<div class="platformFeatures">
-
-<div class="feature">
-
-<i class="fa-solid fa-shield-halved"></i>
-
-<div>
-
-<h4>Enterprise Security</h4>
-
-<p>Role-based access, audit trails and secure authentication.</p>
-
-</div>
-
-</div>
-
-<div class="feature">
-
-<i class="fa-solid fa-chart-line"></i>
-
-<div>
-
-<h4>Real-Time Analytics</h4>
-
-<p>Instant dashboards, KPIs and executive reporting.</p>
-
-</div>
-
-</div>
-
-<div class="feature">
-
-<i class="fa-solid fa-cloud"></i>
-
-<div>
-
-<h4>Cloud Platform</h4>
-
-<p>Access your organization securely from anywhere.</p>
-
-</div>
-
-</div>
-
-<div class="feature">
-
-<i class="fa-solid fa-robot"></i>
-
-<div>
-
-<h4>AI Assistant</h4>
-
-<p>Generate insights, reports and automate repetitive work.</p>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-<div class="platformPreview">
-
-<div class="previewCard">
-
-<h3>Organization Performance</h3>
-
-<div class="progress">
-
-<div class="progressHead">
-
-<span>Library Operations</span>
-
-<span>98%</span>
-
-</div>
-
-<div class="bar">
-
-<div class="fill" style="width:98%"></div>
-
-</div>
-
-</div>
-
-<div class="progress">
-
-<div class="progressHead">
-
-<span>Customer Management</span>
-
-<span>94%</span>
-
-</div>
-
-<div class="bar">
-
-<div class="fill" style="width:94%"></div>
-
-</div>
-
-</div>
-
-<div class="progress">
-
-<div class="progressHead">
-
-<span>Project Delivery</span>
-
-<span>91%</span>
-
-</div>
-
-<div class="bar">
-
-<div class="fill" style="width:91%"></div>
-
-</div>
-
-</div>
-
-<div class="progress">
-
-<div class="progressHead">
-
-<span>Sales Performance</span>
-
-<span>96%</span>
-
-</div>
-
-<div class="bar">
-
-<div class="fill" style="width:96%"></div>
-
-</div>
-
-</div>
-
-</div>
-
-<div class="statsGrid">
-
-<div class="statBox">
-
-<h2>99.9%</h2>
-
-<p>Platform Availability</p>
-
-</div>
-
-<div class="statBox">
-
-<h2>24/7</h2>
-
-<p>Business Access</p>
-
-</div>
-
-<div class="statBox">
-
-<h2>500+</h2>
-
-<p>Organizations</p>
-
-</div>
-
-<div class="statBox">
-
-<h2>25K+</h2>
-
-<p>Active Users</p>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-</section>
-<style>
-
-.showcase{
-padding:110px 80px;
-}
-
-.showcaseHeader{
-text-align:center;
-max-width:900px;
-margin:0 auto 70px;
-}
-
-.showcaseHeader span{
-display:inline-block;
-padding:10px 18px;
-background:#dbeafe;
-color:#2563eb;
-border-radius:30px;
-font-size:14px;
-font-weight:700;
-margin-bottom:20px;
-}
-
-.showcaseHeader h2{
-font-size:52px;
-font-weight:800;
-color:#062B69;
-margin-bottom:20px;
-}
-
-.showcaseHeader p{
-font-size:19px;
-line-height:34px;
-color:#6b7280;
-}
-
-.apps{
-display:grid;
-grid-template-columns:repeat(4,1fr);
-gap:28px;
-}
-
-.app{
-background:#fff;
-border:1px solid #edf2f7;
-border-radius:22px;
-padding:35px;
-transition:.35s;
-box-shadow:0 8px 25px rgba(0,0,0,.06);
-}
-
-.app:hover{
-transform:translateY(-12px);
-box-shadow:0 25px 50px rgba(0,0,0,.12);
-}
-
-.appIcon{
-width:75px;
-height:75px;
-border-radius:18px;
-display:flex;
-align-items:center;
-justify-content:center;
-font-size:34px;
-color:#fff;
-margin-bottom:24px;
-}
-
-.c1{background:#2563eb;}
-.c2{background:#16a34a;}
-.c3{background:#ea580c;}
-.c4{background:#9333ea;}
-.c5{background:#0891b2;}
-.c6{background:#dc2626;}
-.c7{background:#f59e0b;}
-.c8{background:#475569;}
-
-.app h3{
-font-size:26px;
-color:#062B69;
-margin-bottom:15px;
-}
-
-.app p{
-font-size:15px;
-line-height:29px;
-color:#6b7280;
-margin-bottom:22px;
-}
-
-.app ul{
-display:grid;
-gap:10px;
-margin-bottom:30px;
-}
-
-.app ul li{
-display:flex;
-align-items:center;
-gap:10px;
-font-size:15px;
-font-weight:600;
-color:#374151;
-}
-
-.app ul li i{
-color:#16a34a;
-}
-
-.appFooter{
-display:flex;
-justify-content:space-between;
-align-items:center;
-}
-
-.appFooter a{
-padding:13px 22px;
-background:#062B69;
-color:#fff;
-border-radius:10px;
-font-weight:700;
-}
-
-.appFooter i{
-font-size:20px;
-color:#2563eb;
-}
-
-.enterpriseBanner{
-margin-top:90px;
-background:linear-gradient(135deg,#062B69,#2563eb);
-border-radius:30px;
-padding:70px;
-display:flex;
-justify-content:space-between;
-align-items:center;
-color:#fff;
-}
-
-.enterpriseBanner h2{
-font-size:48px;
-font-weight:800;
-margin-bottom:20px;
-}
-
-.enterpriseBanner p{
-font-size:19px;
-line-height:34px;
-max-width:700px;
-opacity:.95;
-}
-
-.bannerButtons{
-display:flex;
-gap:18px;
-margin-top:35px;
-}
-
-.bannerButtons a{
-padding:17px 34px;
-border-radius:10px;
-font-weight:700;
-}
-
-.bannerPrimary{
-background:#fff;
-color:#062B69;
-}
-
-.bannerSecondary{
-border:2px solid #fff;
-color:#fff;
-}
-
-</style>
-
-<section class="showcase">
-
-<div class="showcaseHeader">
-
-<span>Applications</span>
-
-<h2>One Platform. Multiple Enterprise Applications.</h2>
-
-<p>
-
-Every application within Acacia Books ERP is designed to work together, allowing your organization to manage operations from a single secure platform.
-
-</p>
-
-</div>
-
-<div class="apps">
-
-<div class="app">
-
-<div class="appIcon c1">📚</div>
-
-<h3>Books</h3>
-
-<p>Complete library automation for cataloguing, circulation, digital collections and reporting.</p>
-
-<ul>
-<li><i class="fa-solid fa-circle-check"></i>Catalog</li>
-<li><i class="fa-solid fa-circle-check"></i>Borrowing</li>
-<li><i class="fa-solid fa-circle-check"></i>Members</li>
-<li><i class="fa-solid fa-circle-check"></i>Digital Library</li>
-</ul>
-
-<div class="appFooter">
-
-<a href="login.html">Open</a>
-
-<i class="fa-solid fa-arrow-right"></i>
-
-</div>
-
-</div>
-
-<div class="app">
-
-<div class="appIcon c2">👥</div>
-
-<h3>CRM</h3>
-
-<p>Grow customer relationships with sales, quotations, opportunities and customer history.</p>
-
-<ul>
-<li><i class="fa-solid fa-circle-check"></i>Customers</li>
-<li><i class="fa-solid fa-circle-check"></i>Leads</li>
-<li><i class="fa-solid fa-circle-check"></i>Sales Pipeline</li>
-<li><i class="fa-solid fa-circle-check"></i>Contracts</li>
-</ul>
-
-<div class="appFooter">
-
-<a href="login.html">Open</a>
-
-<i class="fa-solid fa-arrow-right"></i>
-
-</div>
-
-</div>
-
-<div class="app">
-
-<div class="appIcon c3">📧</div>
-
-<h3>Mail</h3>
-
-<p>Professional communication with business email, contacts and shared collaboration.</p>
-
-<ul>
-<li><i class="fa-solid fa-circle-check"></i>Inbox</li>
-<li><i class="fa-solid fa-circle-check"></i>Compose</li>
-<li><i class="fa-solid fa-circle-check"></i>Contacts</li>
-<li><i class="fa-solid fa-circle-check"></i>Calendar</li>
-</ul>
-
-<div class="appFooter">
-
-<a href="login.html">Open</a>
-
-<i class="fa-solid fa-arrow-right"></i>
-
-</div>
-
-</div>
-
-<div class="app">
-
-<div class="appIcon c4">📁</div>
-
-<h3>Projects</h3>
-
-<p>Track projects, milestones, teams and project revenue from a central workspace.</p>
-
-<ul>
-<li><i class="fa-solid fa-circle-check"></i>Projects</li>
-<li><i class="fa-solid fa-circle-check"></i>Tasks</li>
-<li><i class="fa-solid fa-circle-check"></i>Revenue</li>
-<li><i class="fa-solid fa-circle-check"></i>Milestones</li>
-</ul>
-
-<div class="appFooter">
-
-<a href="login.html">Open</a>
-
-<i class="fa-solid fa-arrow-right"></i>
-
-</div>
-
-</div>
-
-<div class="app">
-
-<div class="appIcon c5">📦</div>
-
-<h3>Inventory</h3>
-
-<p>Monitor stock, suppliers, purchasing and warehouse operations in real time.</p>
-
-<ul>
-<li><i class="fa-solid fa-circle-check"></i>Products</li>
-<li><i class="fa-solid fa-circle-check"></i>Warehouses</li>
-<li><i class="fa-solid fa-circle-check"></i>Stock</li>
-<li><i class="fa-solid fa-circle-check"></i>Suppliers</li>
-</ul>
-
-<div class="appFooter">
-
-<a href="login.html">Open</a>
-
-<i class="fa-solid fa-arrow-right"></i>
-
-</div>
-
-</div>
-
-<div class="app">
-
-<div class="appIcon c6">💰</div>
-
-<h3>Expenses</h3>
-
-<p>Manage operational spending, approvals, reimbursements and financial visibility.</p>
-
-<ul>
-<li><i class="fa-solid fa-circle-check"></i>Expenses</li>
-<li><i class="fa-solid fa-circle-check"></i>Budgets</li>
-<li><i class="fa-solid fa-circle-check"></i>Approvals</li>
-<li><i class="fa-solid fa-circle-check"></i>Payments</li>
-</ul>
-
-<div class="appFooter">
-
-<a href="login.html">Open</a>
-
-<i class="fa-solid fa-arrow-right"></i>
-
-</div>
-
-</div>
-
-<div class="app">
-
-<div class="appIcon c7">🛒</div>
-
-<h3>Sales</h3>
-
-<p>Create quotations, invoices and sales orders while monitoring business performance.</p>
-
-<ul>
-<li><i class="fa-solid fa-circle-check"></i>Quotations</li>
-<li><i class="fa-solid fa-circle-check"></i>Orders</li>
-<li><i class="fa-solid fa-circle-check"></i>Invoices</li>
-<li><i class="fa-solid fa-circle-check"></i>Revenue</li>
-</ul>
-
-<div class="appFooter">
-
-<a href="login.html">Open</a>
-
-<i class="fa-solid fa-arrow-right"></i>
-
-</div>
-
-</div>
-
-<div class="app">
-
-<div class="appIcon c8">📊</div>
-
-<h3>Analytics</h3>
-
-<p>Powerful dashboards and reports that help management make informed decisions.</p>
-
-<ul>
-<li><i class="fa-solid fa-circle-check"></i>Dashboards</li>
-<li><i class="fa-solid fa-circle-check"></i>KPIs</li>
-<li><i class="fa-solid fa-circle-check"></i>Reports</li>
-<li><i class="fa-solid fa-circle-check"></i>Insights</li>
-</ul>
-
-<div class="appFooter">
-
-<a href="login.html">Open</a>
-
-<i class="fa-solid fa-arrow-right"></i>
-
-</div>
-
-</div>
-
-</div>
-
-<div class="enterpriseBanner">
-
-<div>
-
-<h2>Ready to Experience Acacia Books ERP?</h2>
-
-<p>
-
-Explore every application, discover powerful enterprise features and securely access your workspace from anywhere through a single intelligent platform.
-
-</p>
-
-<div class="bannerButtons">
-
-<a href="login.html" class="bannerPrimary">Sign In</a>
-
-<a href="#contact" class="bannerSecondary">Contact Sales</a>
-
-</div>
-
-</div>
-
-</div>
-
-</section>
-<style>
-
-.why{
-padding:110px 80px;
-background:#0f172a;
-color:#fff;
-}
-
-.whyHeader{
-text-align:center;
-max-width:900px;
-margin:auto auto 80px;
-}
-
-.whyHeader span{
-display:inline-block;
-padding:10px 20px;
-background:rgba(37,99,235,.15);
-color:#93c5fd;
-border-radius:30px;
-font-size:15px;
-font-weight:700;
-margin-bottom:22px;
-}
-
-.whyHeader h2{
-font-size:52px;
-font-weight:800;
-margin-bottom:22px;
-line-height:1.2;
-}
-
-.whyHeader p{
-font-size:19px;
-line-height:34px;
-opacity:.9;
-}
-
-.whyGrid{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-gap:30px;
-margin-bottom:90px;
-}
-
-.whyCard{
-background:rgba(255,255,255,.06);
-border:1px solid rgba(255,255,255,.08);
-border-radius:24px;
-padding:35px;
-transition:.35s;
-}
-
-.whyCard:hover{
-transform:translateY(-10px);
-background:#2563eb;
-}
-
-.whyCard i{
-font-size:42px;
-margin-bottom:25px;
-color:#60a5fa;
-}
-
-.whyCard:hover i{
-color:#fff;
-}
-
-.whyCard h3{
-font-size:24px;
-margin-bottom:18px;
-}
-
-.whyCard p{
-font-size:16px;
-line-height:30px;
-opacity:.9;
-}
-
-.numbers{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-gap:25px;
-}
-
-.numberCard{
-background:#fff;
-border-radius:22px;
-padding:35px;
-text-align:center;
-color:#111827;
-transition:.3s;
-}
-
-.numberCard:hover{
-transform:translateY(-8px);
-}
-
-.numberCard h2{
-font-size:52px;
-font-weight:800;
-color:#2563eb;
-margin-bottom:12px;
-}
-
-.numberCard h4{
-font-size:20px;
-margin-bottom:12px;
-color:#062B69;
-}
-
-.numberCard p{
-font-size:15px;
-line-height:28px;
-color:#6b7280;
-}
-
-.testimonials{
-padding:110px 80px;
-background:#ffffff;
-}
-
-.testimonialHeader{
-text-align:center;
-max-width:900px;
-margin:auto auto 70px;
-}
-
-.testimonialHeader span{
-display:inline-block;
-padding:10px 20px;
-background:#dbeafe;
-color:#2563eb;
-border-radius:30px;
-font-weight:700;
-margin-bottom:20px;
-}
-
-.testimonialHeader h2{
-font-size:52px;
-font-weight:800;
-color:#062B69;
-margin-bottom:20px;
-}
-
-.testimonialHeader p{
-font-size:19px;
-line-height:34px;
-color:#6b7280;
-}
-
-.testimonialGrid{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(340px,1fr));
-gap:30px;
-margin-bottom:60px;
-}
-
-.testimonial{
-background:#fff;
-border-radius:22px;
-padding:35px;
-box-shadow:0 12px 35px rgba(0,0,0,.08);
-transition:.35s;
-}
-
-.testimonial:hover{
-transform:translateY(-10px);
-}
-
-.stars{
-font-size:22px;
-color:#f59e0b;
-margin-bottom:20px;
-letter-spacing:2px;
-}
-
-.testimonial p{
-font-size:17px;
-line-height:32px;
-color:#4b5563;
-margin-bottom:30px;
-}
-
-.person{
-display:flex;
-align-items:center;
-gap:16px;
-}
-
-.avatar{
-width:65px;
-height:65px;
-border-radius:50%;
-background:linear-gradient(135deg,#062B69,#2563eb);
-display:flex;
-align-items:center;
-justify-content:center;
-font-size:24px;
-font-weight:700;
-color:#fff;
-}
-
-.person h4{
-font-size:20px;
-color:#062B69;
-margin-bottom:5px;
-}
-
-.person span{
-font-size:15px;
-color:#6b7280;
-}
-
-.reviewStats{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-gap:25px;
-margin-top:40px;
-}
-
-.reviewCard{
-background:#062B69;
-color:#fff;
-padding:35px;
-border-radius:22px;
-text-align:center;
-}
-
-.reviewCard h2{
-font-size:46px;
-margin-bottom:10px;
-}
-
-.reviewCard p{
-font-size:16px;
-opacity:.9;
-}
-
-.testimonialFormSection{
-padding:110px 80px;
-background:#f8fafc;
-}
-
-.testimonialFormCard{
-max-width:900px;
-margin:auto;
-background:#fff;
-padding:45px;
-border-radius:24px;
-box-shadow:0 15px 40px rgba(0,0,0,.08);
-}
-
-.formRow{
-display:grid;
-grid-template-columns:repeat(2,1fr);
-gap:25px;
-margin-bottom:25px;
-}
-
-.formGroup{
-margin-bottom:25px;
-}
-
-.formGroup label{
-display:block;
-font-size:15px;
-font-weight:700;
-color:#062B69;
-margin-bottom:10px;
-}
-
-.formGroup input,
-.formGroup select,
-.formGroup textarea{
-width:100%;
-padding:16px;
-border:1px solid #d1d5db;
-border-radius:12px;
-font-size:16px;
-outline:none;
-transition:.3s;
-}
-
-.formGroup input:focus,
-.formGroup select:focus,
-.formGroup textarea:focus{
-border-color:#2563eb;
-}
-
-.rating{
-display:flex;
-gap:18px;
-flex-wrap:wrap;
-font-size:20px;
-color:#f59e0b;
-}
-
-.submitReview{
-width:100%;
-padding:18px;
-background:#062B69;
-color:#fff;
-border:none;
-border-radius:12px;
-font-size:18px;
-font-weight:700;
-cursor:pointer;
-transition:.3s;
-}
-
-.submitReview:hover{
-background:#2563eb;
-}
-
-@media(max-width:992px){
-
-.formRow{
-grid-template-columns:1fr;
-}
-
-.why,
-.testimonials,
-.testimonialFormSection{
-padding:80px 30px;
-}
-
-.whyHeader h2,
-.testimonialHeader h2{
-font-size:38px;
-}
-
-}
-
-</style>
-
-<section class="why">
-
-<div class="whyHeader">
-
-<span>Why Organizations Choose Acacia Books ERP</span>
-
-<h2>Everything You Need to Run Your Organization From One Platform</h2>
-
-<p>
-
-Acacia Books ERP unifies Library Management, CRM, Mail, Projects, Inventory, Sales, Expenses and Reporting into one intelligent cloud platform, helping organizations work smarter, faster and more securely.
-
-</p>
-
-</div>
-
-<div class="whyGrid">
-
-<div class="whyCard">
-
-<i class="fa-solid fa-book"></i>
-
-<h3>Smart Library</h3>
-
-<p>
-
-Manage books, members, circulation, reservations, fines and digital resources from one intelligent library system.
-
-</p>
-
-</div>
-
-<div class="whyCard">
-
-<i class="fa-solid fa-users"></i>
-
-<h3>Customer Relationship Management</h3>
-
-<p>
-
-Track leads, customers, communications and sales opportunities while building stronger customer relationships.
-
-</p>
-
-</div>
-
-<div class="whyCard">
-
-<i class="fa-solid fa-boxes-stacked"></i>
-
-<h3>Inventory Management</h3>
-
-<p>
-
-Monitor stock levels, suppliers, purchases and warehouse movements with real-time inventory tracking.
-
-</p>
-
-</div>
-
-<div class="whyCard">
-
-<i class="fa-solid fa-chart-line"></i>
-
-<h3>Sales & Expenses</h3>
-
-<p>
-
-Record sales, manage expenses, monitor profits and generate financial reports with complete visibility.
-
-</p>
-
-</div>
-
-<div class="whyCard">
-
-<i class="fa-solid fa-diagram-project"></i>
-
-<h3>Project Management</h3>
-
-<p>
-
-Plan projects, assign tasks, monitor milestones and collaborate across departments in one workspace.
-
-</p>
-
-</div>
-
-<div class="whyCard">
-
-<i class="fa-solid fa-envelope"></i>
-
-<h3>Business Mail</h3>
-
-<p>
-
-Communicate professionally using integrated enterprise email connected to your organization.
-
-</p>
-
-</div>
-
-<div class="whyCard">
-
-<i class="fa-solid fa-shield-halved"></i>
-
-<h3>Enterprise Security</h3>
-
-<p>
-
-Protect your organization with role-based permissions, encrypted data, audit logs and secure authentication.
-
-</p>
-
-</div>
-
-<div class="whyCard">
-
-<i class="fa-solid fa-cloud"></i>
-
-<h3>Cloud Access</h3>
-
-<p>
-
-Access Acacia Books ERP securely from anywhere using your computer, tablet or mobile phone.
-
-</p>
-
-</div>
-
-</div>
-
-<div class="numbers">
-
-<div class="numberCard">
-
-<h2>500+</h2>
-
-<h4>Organizations</h4>
-
-<p>
-
-Businesses, schools, universities and institutions trust Acacia Books ERP.
-
-</p>
-
-</div>
-
-<div class="numberCard">
-
-<h2>25K+</h2>
-
-<h4>Active Users</h4>
-
-<p>
-
-Thousands of professionals use the platform every day.
-
-</p>
-
-</div>
-
-<div class="numberCard">
-
-<h2>1M+</h2>
-
-<h4>Books Managed</h4>
-
-<p>
-
-Libraries efficiently manage millions of books and learning resources.
-
-</p>
-
-</div>
-
-<div class="numberCard">
-
-<h2>99.9%</h2>
-
-<h4>Platform Availability</h4>
-
-<p>
-
-Reliable cloud infrastructure with continuous uptime and automatic backups.
-
-</p>
-
-</div>
-
-<div class="numberCard">
-
-<h2>24/7</h2>
-
-<h4>Cloud Access</h4>
-
-<p>
-
-Work securely from anywhere, anytime using any connected device.
-
-</p>
-
-</div>
-
-<div class="numberCard">
-
-<h2>100%</h2>
-
-<h4>Integrated ERP</h4>
-
-<p>
-
-All modules work together in one connected enterprise platform.
-
-</p>
-
-</div>
-
-</div>
-
-</section>
-<section class="testimonials">
-
-<div class="testimonialHeader">
-
-<span>Customer Success Stories</span>
-
-<h2>Trusted By Schools, Businesses & Organizations</h2>
-
-<p>
-
-Thousands of professionals rely on Acacia Books ERP to manage operations, improve productivity and make better decisions every day.
-
-</p>
-
-</div>
-
-<div class="testimonialGrid">
-
-<div class="testimonial">
-
-<div class="stars">
-★★★★★
-</div>
-
-<p>
-
-The Library module transformed how we manage books, members and borrowing records. Staff save hours every week and students enjoy faster service.
-
-</p>
-
-<div class="person">
-
-<div class="avatar">G</div>
-
-<div>
-
-<h4>Grace Mwangi</h4>
-
-<span>School Librarian</span>
-
-</div>
-
-</div>
-
-</div>
-
-<div class="testimonial">
-
-<div class="stars">
-★★★★★
-</div>
-
-<p>
-
-The CRM and Sales modules helped us track customers, manage leads and improve revenue. Everything is now organized in one place.
-
-</p>
-
-<div class="person">
-
-<div class="avatar">K</div>
-
-<div>
-
-<h4>Kevin Otieno</h4>
-
-<span>Sales Manager</span>
-
-</div>
-
-</div>
-
-</div>
-
-<div class="testimonial">
-
-<div class="stars">
-★★★★★
-</div>
-
-<p>
-
-Inventory management has become effortless. We always know stock levels, supplier information and purchasing requirements.
-
-</p>
-
-<div class="person">
-
-<div class="avatar">D</div>
-
-<div>
-
-<h4>Daniel Kimani</h4>
-
-<span>Warehouse Supervisor</span>
-
-</div>
-
-</div>
-
-</div>
-
-<div class="testimonial">
-
-<div class="stars">
-★★★★★
-</div>
-
-<p>
-
-Managing multiple departments became much easier. Payroll, expenses and reporting are now centralized in one secure system.
-
-</p>
-
-<div class="person">
-
-<div class="avatar">S</div>
-
-<div>
-
-<h4>Sarah Njeri</h4>
-
-<span>Business Owner</span>
-
-</div>
-
-</div>
-
-</div>
-
-<div class="testimonial">
-
-<div class="stars">
-★★★★★
-</div>
-
-<p>
-
-The Enterprise package provided the integrations and security controls our organization needed to scale confidently.
-
-</p>
-
-<div class="person">
-
-<div class="avatar">J</div>
-
-<div>
-
-<h4>John Mwangi</h4>
-
-<span>Operations Director</span>
-
-</div>
-
-</div>
-
-</div>
-
-<div class="testimonial">
-
-<div class="stars">
-★★★★★
-</div>
-
-<p>
-
-Acacia Books ERP gives us Library, CRM, Mail, Projects, Inventory and Finance in one platform. It has become essential to our operations.
-
-</p>
-
-<div class="person">
-
-<div class="avatar">E</div>
-
-<div>
-
-<h4>Emily Wanjiku</h4>
-
-<span>Chief Executive Officer</span>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-<div class="reviewStats">
-
-<div class="reviewCard">
-
-<h2>4.9/5</h2>
-
-<p>Average Customer Rating</p>
-
-</div>
-
-<div class="reviewCard">
-
-<h2>10,000+</h2>
-
-<p>Reviews Submitted</p>
-
-</div>
-
-<div class="reviewCard">
-
-<h2>98%</h2>
-
-<p>Customer Satisfaction</p>
-
-</div>
-
-<div class="reviewCard">
-
-<h2>95%</h2>
-
-<p>Renewal Rate</p>
-
-</div>
-
-</div>
-
-</section>
-<section class="testimonialFormSection">
-
-<div class="testimonialHeader">
-
-<span>Share Your Experience</span>
-
-<h2>Tell Others About Acacia Books ERP</h2>
-
-<p>
-
-We value every customer's feedback. Share your experience using Acacia Books ERP and help other organizations discover how our platform can transform their operations.
-
-</p>
-
-</div>
-
-<div class="testimonialFormCard">
-
-<form id="testimonialForm">
-
-<div class="formRow">
-
-<div class="formGroup">
-
-<label>Full Name</label>
-
-<input
-type="text"
-id="fullName"
-placeholder="Enter your full name"
-required>
-
-</div>
-
-<div class="formGroup">
-
-<label>Organization</label>
-
-<input
-type="text"
-id="organization"
-placeholder="Organization name"
-required>
-
-</div>
-
-</div>
-
-<div class="formRow">
-
-<div class="formGroup">
-
-<label>Job Title</label>
-
-<input
-type="text"
-id="position"
-placeholder="Your position">
-
-</div>
-
-<div class="formGroup">
-
-<label>Email Address</label>
-
-<input
-type="email"
-id="email"
-placeholder="example@email.com">
-
-</div>
-
-</div>
-
-<div class="formGroup">
-
-<label>Select Your Plan</label>
-
-<select id="plan">
-
-<option>Free</option>
-
-<option>Starter</option>
-
-<option>Pro</option>
-
-<option>Business</option>
-
-<option>Enterprise</option>
-
-<option>All Access</option>
-
-</select>
-
-</div>
-
-<div class="formGroup">
-
-<label>Your Rating</label>
-
-<div class="rating">
-
-<input type="radio" name="rating" value="5" id="star5">
-
-<label for="star5">
-★★★★★
-</label>
-
-<input type="radio" name="rating" value="4" id="star4">
-
-<label for="star4">
-★★★★☆
-</label>
-
-<input type="radio" name="rating" value="3" id="star3">
-
-<label for="star3">
-★★★☆☆
-</label>
-
-<input type="radio" name="rating" value="2" id="star2">
-
-<label for="star2">
-★★☆☆☆
-</label>
-
-<input type="radio" name="rating" value="1" id="star1">
-
-<label for="star1">
-★☆☆☆☆
-</label>
-
-</div>
-
-</div>
-
-<div class="formGroup">
-
-<label>Your Experience</label>
-
-<textarea
-
-id="review"
-
-rows="6"
-
-placeholder="Tell us how Acacia Books ERP has helped your organization..."
-
-required>
-
-</textarea>
-
-</div>
-
-<div class="formGroup">
-
-<label>Profile Photo (Optional)</label>
-
-<input
-
-type="file"
-
-id="photo"
-
-accept="image/*">
-
-</div>
-
-<button
-
-type="submit"
-
-class="submitReview">
-
-Submit Testimonial
-
-</button>
-
-</form>
-
-</div>
-
-<div id="userTestimonials" class="testimonialGrid">
-
-</div>
-
-</section>
-
-<script>
-
-document.getElementById("testimonialForm").addEventListener("submit",function(e){
-
-e.preventDefault();
-
-const name=document.getElementById("fullName").value;
-
-const org=document.getElementById("organization").value;
-
-const review=document.getElementById("review").value;
-
-const rating=document.querySelector('input[name="rating"]:checked')?.value||5;
-
-const initials=name.charAt(0).toUpperCase();
-
-let stars="";
-
-for(let i=0;i<rating;i++){
-
-stars+="★";
-
-}
-
-const card=`
-
-<div class="testimonial">
-
-<div class="stars">
-
-${stars}
-
-</div>
-
-<p>
-
-${review}
-
-</p>
-
-<div class="person">
-
-<div class="avatar">
-
-${initials}
-
-</div>
-
-<div>
-
-<h4>
-
-${name}
-
-</h4>
-
-<span>
-
-${org}
-
-</span>
-
-</div>
-
-</div>
-
-</div>
-
-`;
-
-document.getElementById("userTestimonials").innerHTML=
-
-card+
-
-document.getElementById("userTestimonials").innerHTML;
-
-this.reset();
-
-alert("Thank you for sharing your experience with Acacia Books ERP!");
-
-});
-
-</script>
-<style>
-
-.cta{
-padding:120px 80px;
-background:linear-gradient(135deg,#062B69,#2563EB);
-color:#fff;
-}
-
-.ctaBox{
-max-width:1400px;
-margin:auto;
-display:grid;
-grid-template-columns:2fr 1fr;
-gap:80px;
-align-items:center;
-}
-
-.cta h2{
-font-size:58px;
-font-weight:800;
-line-height:1.2;
-margin-bottom:25px;
-}
-
-.cta p{
-font-size:20px;
-line-height:36px;
-opacity:.95;
-max-width:760px;
-margin-bottom:40px;
-}
-
-.ctaButtons{
-display:flex;
-gap:20px;
-flex-wrap:wrap;
-}
-
-.ctaPrimary{
-background:#fff;
-color:#062B69;
-padding:18px 35px;
-border-radius:12px;
-font-size:17px;
-font-weight:700;
-}
-
-.ctaSecondary{
-border:2px solid #fff;
-color:#fff;
-padding:18px 35px;
-border-radius:12px;
-font-size:17px;
-font-weight:700;
-}
-
-.ctaCard{
-background:rgba(255,255,255,.12);
-backdrop-filter:blur(20px);
-padding:40px;
-border-radius:24px;
-}
-
-.ctaCard h3{
-font-size:28px;
-margin-bottom:30px;
-}
-
-.ctaItem{
-display:flex;
-justify-content:space-between;
-align-items:center;
-padding:18px 0;
-border-bottom:1px solid rgba(255,255,255,.15);
-}
-
-.ctaItem:last-child{
-border:none;
-}
-
-.ctaItem span{
-font-size:16px;
-}
-
-.ctaItem strong{
-font-size:20px;
-}
-
-.footer{
-background:#081223;
-color:#cbd5e1;
-padding:90px 80px 30px;
-}
-
-.footerGrid{
-display:grid;
-grid-template-columns:2fr repeat(4,1fr);
-gap:60px;
-margin-bottom:70px;
-}
-
-.footerLogo h2{
-font-size:34px;
-font-weight:800;
-color:#fff;
-margin-bottom:15px;
-}
-
-.footerLogo p{
-line-height:32px;
-font-size:16px;
-max-width:420px;
-}
-
-.footerLogo .social{
-display:flex;
-gap:16px;
-margin-top:30px;
-}
-
-.footerLogo .social a{
-width:46px;
-height:46px;
-border-radius:50%;
-background:#16243d;
-display:flex;
-align-items:center;
-justify-content:center;
-color:#fff;
-font-size:18px;
-transition:.3s;
-}
-
-.footerLogo .social a:hover{
-background:#2563EB;
-}
-
-.footerColumn h3{
-font-size:20px;
-color:#fff;
-margin-bottom:25px;
-}
-
-.footerColumn ul{
-display:grid;
-gap:16px;
-}
-
-.footerColumn a{
-color:#cbd5e1;
-font-size:15px;
-transition:.3s;
-}
-
-.footerColumn a:hover{
-color:#fff;
-padding-left:8px;
-}
-
-.bottomFooter{
-border-top:1px solid rgba(255,255,255,.08);
-padding-top:30px;
-display:flex;
-justify-content:space-between;
-align-items:center;
-}
-
-.bottomFooter p{
-font-size:15px;
-}
-
-.bottomFooter ul{
-display:flex;
-gap:25px;
-}
-
-.bottomFooter a{
-color:#cbd5e1;
-font-size:15px;
-}
-
-@media(max-width:1200px){
-
-.modules,
-.apps,
-.whyGrid,
-.testimonialGrid,
-.footerGrid,
-.platformGrid,
-.ctaBox,
-.numbers{
-grid-template-columns:1fr;
-}
-
-.hero{
-flex-direction:column;
-text-align:center;
-padding:120px 40px 80px;
-}
-
-.leftHero,
-.rightHero{
-width:100%;
-}
-
-.preview{
-margin-top:50px;
-}
-
-nav{
-display:none;
-}
-
-header{
-padding:0 30px;
-}
-
-.section,
-.platform,
-.showcase,
-.why,
-.testimonials,
-.cta,
-.footer{
-padding:80px 30px;
-}
-
-.leftHero h1{
-font-size:48px;
-}
-
-.enterpriseBanner{
-padding:50px 35px;
-}
-
-.enterpriseBanner h2,
-.platformText h2,
-.showcaseHeader h2,
-.whyHeader h2,
-.testimonialHeader h2,
-.cta h2{
-font-size:40px;
-}
-
-.bottomFooter{
-flex-direction:column;
-gap:20px;
-text-align:center;
-}
-
-}
-
-</style>
-
-<section class="cta">
-
-<div class="ctaBox">
-
-<div>
-
-<h2>Start Managing Your Organization With Acacia Books ERP</h2>
-
-<p>
-
-Discover a modern enterprise platform that brings together Library Management, CRM, Mail, Projects, Inventory, Expenses and Sales into one intelligent workspace.
-
-</p>
-
-<div class="ctaButtons">
-
-<a href="login.html" class="ctaPrimary">Sign In</a>
-
-<a href="#contact" class="ctaSecondary">Request Demo</a>
-
-</div>
-
-</div>
-
-<div class="ctaCard">
-
-<h3>Platform Highlights</h3>
-
-<div class="ctaItem">
-
-<span>Integrated Applications</span>
-
-<strong>7+</strong>
-
-</div>
-
-<div class="ctaItem">
-
-<span>Enterprise Ready</span>
-
-<strong>100%</strong>
-
-</div>
-
-<div class="ctaItem">
-
-<span>Cloud Access</span>
-
-<strong>24/7</strong>
-
-</div>
-
-<div class="ctaItem">
-
-<span>Business Intelligence</span>
-
-<strong>AI</strong>
-
-</div>
-
-</div>
-
-</div>
-
-</section>
-
-<footer class="footer" id="contact">
-
-<div class="footerGrid">
-
-<div class="footerLogo">
-
-<h2>Acacia Books ERP</h2>
-
-<p>
-
-One intelligent enterprise platform for managing libraries, customers, communication, projects, inventory, expenses and sales from anywhere.
-
-</p>
-
-<div class="social">
-
-<a href="#"><i class="fab fa-facebook-f"></i></a>
-
-<a href="#"><i class="fab fa-x-twitter"></i></a>
-
-<a href="#"><i class="fab fa-linkedin-in"></i></a>
-
-<a href="#"><i class="fab fa-youtube"></i></a>
-
-</div>
-
-</div>
-
-<div class="footerColumn">
-
-<h3>Platform</h3>
-
-<ul>
-
-<li><a href="#">Library</a></li>
-
-<li><a href="#">CRM</a></li>
-
-<li><a href="#">Mail</a></li>
-
-<li><a href="#">Projects</a></li>
-
-<li><a href="#">Inventory</a></li>
-
-<li><a href="#">Sales</a></li>
-
-</ul>
-
-</div>
-
-<div class="footerColumn">
-
-<h3>Resources</h3>
-
-<ul>
-
-<li><a href="#">Documentation</a></li>
-
-<li><a href="#">API</a></li>
-
-<li><a href="#">Training</a></li>
-
-<li><a href="#">Downloads</a></li>
-
-<li><a href="#">Support</a></li>
-
-<li><a href="#">Community</a></li>
-
-</ul>
-
-</div>
-
-<div class="footerColumn">
-
-<h3>Company</h3>
-
-<ul>
-
-<li><a href="#">About</a></li>
-
-<li><a href="#">Careers</a></li>
-
-<li><a href="#">Partners</a></li>
-
-<li><a href="#">News</a></li>
-
-<li><a href="#">Contact</a></li>
-
-<li><a href="#">Blog</a></li>
-
-</ul>
-
-</div>
-
-<div class="footerColumn">
-
-<h3>Legal</h3>
-
-<ul>
-
-<li><a href="#">Privacy Policy</a></li>
-
-<li><a href="#">Terms of Service</a></li>
-
-<li><a href="#">Security</a></li>
-
-<li><a href="#">Compliance</a></li>
-
-<li><a href="#">Cookies</a></li>
-
-<li><a href="#">Licensing</a></li>
-
-</ul>
-
-</div>
-
-</div>
-
-<div class="bottomFooter">
-
-<p>© 2026 Acacia Books ERP. All Rights Reserved.</p>
-
-<ul>
-
-<li><a href="#">Privacy</a></li>
-
-<li><a href="#">Terms</a></li>
-
-<li><a href="#">Accessibility</a></li>
-
-</ul>
-
-</div>
-
-</footer>
-<script>
-
-const header=document.querySelector("header");
-
-window.addEventListener("scroll",()=>{
-
-if(window.scrollY>80){
-
-header.style.background="rgba(255,255,255,.98)";
-header.style.boxShadow="0 15px 40px rgba(0,0,0,.08)";
-
-}else{
-
-header.style.background="rgba(255,255,255,.96)";
-header.style.boxShadow="0 5px 20px rgba(0,0,0,.08)";
-
-}
-
-});
-
-document.querySelectorAll('a[href^="#"]').forEach(link=>{
-
-link.addEventListener("click",e=>{
-
-const target=document.querySelector(link.getAttribute("href"));
-
-if(target){
-
-e.preventDefault();
-
-target.scrollIntoView({
-
-behavior:"smooth"
-
-});
-
-}
-
-});
-
-});
-
-const observer=new IntersectionObserver(entries=>{
-
-entries.forEach(entry=>{
-
-if(entry.isIntersecting){
-
-entry.target.style.opacity="1";
-entry.target.style.transform="translateY(0)";
-
-}
-
-});
-
-},{
-
-threshold:.15
-
-});
-
-document.querySelectorAll(".module,.app,.whyCard,.testimonial,.feature,.statBox,.previewCard").forEach(el=>{
-
-el.style.opacity="0";
-el.style.transform="translateY(40px)";
-el.style.transition=".8s ease";
-
-observer.observe(el);
-
-});
-
-const counters=document.querySelectorAll(".numberCard h2,.item strong");
-
-const runCounter=(counter)=>{
-
-const value=counter.innerText;
-
-const number=parseInt(value.replace(/\D/g,""));
-
-if(!number) return;
-
-const suffix=value.replace(/[0-9]/g,"");
-
-let start=0;
-
-const speed=Math.max(10,2000/number);
-
-const update=()=>{
-
-start+=Math.ceil(number/100);
-
-if(start>=number){
-
-counter.innerText=number+suffix;
-
-}else{
-
-counter.innerText=start+suffix;
-
-setTimeout(update,speed);
-
-}
-
-};
-
-update();
-
-};
-
-const counterObserver=new IntersectionObserver(entries=>{
-
-entries.forEach(entry=>{
-
-if(entry.isIntersecting){
-
-runCounter(entry.target);
-
-counterObserver.unobserve(entry.target);
-
-}
-
-});
-
-});
-
-counters.forEach(counter=>{
-
-counterObserver.observe(counter);
-
-});
-
-document.querySelectorAll(".module,.app").forEach(card=>{
-
-card.addEventListener("mouseenter",()=>{
-
-card.style.transition=".35s";
-card.style.transform="translateY(-12px) scale(1.02)";
-
-});
-
-card.addEventListener("mouseleave",()=>{
-
-card.style.transform="translateY(0) scale(1)";
-
-});
-
-});
-
-document.querySelectorAll(".primary,.secondary,.ctaPrimary,.ctaSecondary,.getStarted,.signIn").forEach(btn=>{
-
-btn.addEventListener("mouseenter",()=>{
-
-btn.style.transform="translateY(-3px)";
-
-});
-
-btn.addEventListener("mouseleave",()=>{
-
-btn.style.transform="translateY(0)";
-
-});
-
-});
-
-const floats=document.querySelectorAll(".float");
-
-window.addEventListener("mousemove",e=>{
-
-const x=(e.clientX/window.innerWidth-.5)*20;
-
-const y=(e.clientY/window.innerHeight-.5)*20;
-
-floats.forEach((f,index)=>{
-
-const factor=index===0?1.2:.8;
-
-f.style.transform=`translate(${x*factor}px,${y*factor}px)`;
-
-});
-
-});
-
-window.addEventListener("load",()=>{
-
-document.body.style.opacity="1";
-
-});
-
-document.body.style.opacity="0";
-document.body.style.transition=".6s";
-
-</script>
-
+    <header>
+        <div class="logo">
+            <img src="acaciabooks-logo.png" alt="Acacia Books Logo">
+            <div class="logoText">
+                <h2>Acacia Books</h2>
+                <span>Enterprise Platform</span>
+            </div>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#solutions">Solutions</a></li>
+                <li><a href="#modules">Modules</a></li>
+                <li><a href="#pricing">Pricing</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#support">Support</a></li>
+            </ul>
+        </nav>
+        <div class="actions">
+            <a href="https://kimani254star.github.io/acacia-books/" class="signIn">Sign In</a>
+            <a href="#modules" class="getStarted">Explore ERP</a>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="leftHero">
+            <div class="badge">
+                <i class="fa-solid fa-shield-halved"></i> Cloud-Native Enterprise Architecture
+            </div>
+            <h1>The modern operating system for corporate growth.</h1>
+            <p>
+                Acacia Books ERP integrates structural sales, book catalogs, inventory balancing, business expenses, agile projects, and secure mail routing into a highly flexible architecture.
+            </p>
+            <div class="heroButtons">
+                <a href="#modules" class="primary">Explore Modules</a>
+                <a href="#solutions" class="secondary">See Solutions</a>
+            </div>
+        </div>
+        <div class="rightHero">
+            <div class="preview">
+                <h2>Operational Integrity</h2>
+                <div class="item">
+                    <span>Organizations Engaged</span>
+                    <strong class="counter" data-target="500">0+</strong>
+                </div>
+                <div class="item">
+                    <span>Active Sessions Today</span>
+                    <strong class="counter" data-target="25000">0+</strong>
+                </div>
+                <div class="item">
+                    <span>Active Data Pipelines</span>
+                    <strong class="counter" data-target="6">0</strong>
+                </div>
+                <div class="item">
+                    <span>Core SLA Guarantee</span>
+                    <strong>99.99%</strong>
+                </div>
+            </div>
+            <div class="float float1"><i class="fa-solid fa-chart-pie"></i> Financial Core</div>
+            <div class="float float2"><i class="fa-solid fa-boxes-stacked"></i> Logistics Core</div>
+        </div>
+    </section>
+
+    <section class="section-alt" id="solutions">
+        <div class="sectionTitle">
+            <span>Tailored Frameworks</span>
+            <h2>Built for every level of enterprise</h2>
+            <p>From growing operations to multinational corporate structures, our solutions provide the controls and scaling capabilities your operational ecosystem demands.</p>
+        </div>
+        <div class="solutions-grid">
+            <div class="solution-card">
+                <div class="sol-icon"><i class="fa-solid fa-seedling"></i></div>
+                <h3>SMEs & Growth Stages</h3>
+                <p>Standardize operational pipelines, establish unified expense management, and eliminate isolated processes without complex setups.</p>
+            </div>
+            <div class="solution-card">
+                <div class="sol-icon"><i class="fa-solid fa-building"></i></div>
+                <h3>Mid-Market Enterprises</h3>
+                <p>Synchronize inventory across warehouse sites, handle multi-currency accounting, and unlock real-time resource allocations.</p>
+            </div>
+            <div class="solution-card">
+                <div class="sol-icon"><i class="fa-solid fa-network-wired"></i></div>
+                <h3>Large-Scale Corporations</h3>
+                <p>Deploy custom data strategies with robust role permission layers, advanced data compliance engines, and infinite API integrations.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="modules">
+        <div class="sectionTitle">
+            <span>Modular Core Architecture</span>
+            <h2>Engineered to scale with your demand</h2>
+            <p>Activate specific modules safely across your organizational structure. Each engine functions as a standalone capability or blends into a unified operational grid.</p>
+        </div>
+        <div class="modules">
+            <div class="module">
+                <div class="icon blue"><i class="fa-solid fa-book"></i></div>
+                <h3>Book Catalog Engine</h3>
+                <p>Architect complex hierarchical indexes, structural metadata, author royalties, and format variations with unified system assets.</p>
+                <div class="features">
+                    <div>Multi-format tracking</div>
+                    <div>Meta sync</div>
+                    <div>Royalties logic</div>
+                    <div>Bulk ingestion</div>
+                </div>
+                <div class="learn">
+                    <a href="#">Technical documentation</a>
+                    <i class="fa-solid fa-arrow-right"></i>
+                </div>
+            </div>
+
+            <div class="module">
+                <div class="icon green"><i class="fa-solid fa-cart-shopping"></i></div>
+                <h3>Sales & Distribution</h3>
+                <p>Automate structural billing pipelines, handle programmatic price sheets, and process orders safely across global channels.</p>
+                <div class="features">
+                    <div>Automated pricing</div>
+                    <div>Tax engines</div>
+                    <div>B2B invoicing</div>
+                    <div>Fulfillment tracking</div>
+                </div>
+                <div class="learn">
+                    <a href="#">Technical documentation</a>
+                    <i class="fa-solid fa-arrow-right"></i>
+                </div>
+            </div>
+
+            <div class="module">
+                <div class="icon orange"><i class="fa-solid fa-boxes-stacked"></i></div>
+                <h3>Inventory Balancing</h3>
+                <p>Real-time physical asset tracking, multi-warehouse location routing, predictive auto-replenishment loops, and audit pipelines.</p>
+                <div class="features">
+                    <div>Multi-site sync</div>
+                    <div>Barcoding array</div>
+                    <div>Stock forecasting</div>
+                    <div>Audit tracking</div>
+                </div>
+                <div class="learn">
+                    <a href="#">Technical documentation</a>
+                    <i class="fa-solid fa-arrow-right"></i>
+                </div>
+            </div>
+
+            <div class="module">
+                <div class="icon purple"><i class="fa-solid fa-wallet"></i></div>
+                <h3>Expense & Ledger</h3>
+                <p>Unify operational spending, structure recurring ledger outlays, track dynamic departmental budgets, and compile clear compliance audits.</p>
+                <div class="features">
+                    <div>Ledger visibility</div>
+                    <div>Receipt automation</div>
+                    <div>Budget limits</div>
+                    <div>Tax grouping</div>
+                </div>
+                <div class="learn">
+                    <a href="#">Technical documentation</a>
+                    <i class="fa-solid fa-arrow-right"></i>
+                </div>
+            </div>
+
+            <div class="module">
+                <div class="icon cyan"><i class="fa-solid fa-list-check"></i></div>
+                <h3>Agile Projects Matrix</h3>
+                <p>Coordinate structural organizational shifts via interactive roadmap Gantts, milestones, and shared personnel resource timelines.</p>
+                <div class="features">
+                    <div>Resource loading</div>
+                    <div>Gantt visualizers</div>
+                    <div>Task logic</div>
+                    <div>Time allocation</div>
+                </div>
+                <div class="learn">
+                    <a href="#">Technical documentation</a>
+                    <i class="fa-solid fa-arrow-right"></i>
+                </div>
+            </div>
+
+            <div class="module">
+                <div class="icon rose"><i class="fa-solid fa-envelope-open-text"></i></div>
+                <h3>Secure Mail Router</h3>
+                <p>Programmatic internal communications, custom automated operational updates, and secure cryptographic delivery rails.</p>
+                <div class="features">
+                    <div>Automated alerts</div>
+                    <div>DKIM/SPF rules</div>
+                    <div>Activity records</div>
+                    <div>Template logic</div>
+                </div>
+                <div class="learn">
+                    <a href="#">Technical documentation</a>
+                    <i class="fa-solid fa-arrow-right"></i>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-alt" id="pricing">
+        <div class="sectionTitle">
+            <span>Predictable Licensing Framework</span>
+            <h2>Flexible plans tailored for your operation</h2>
+            <p>Toggle between our dedicated Book Catalog edition or unlock the comprehensive Multi-Module enterprise stack.</p>
+        </div>
+
+        <div class="pricing-section-container">
+            <div class="pricing-controls-wrapper">
+                <div class="module-tabs">
+                    <button class="module-tab-btn active" onclick="switchModule('books', this)">
+                        <i class="fa-solid fa-book-open"></i> Books Module Only
+                    </button>
+                    <button class="module-tab-btn" onclick="switchModule('all', this)">
+                        <i class="fa-solid fa-cubes"></i> All Modules Included
+                    </button>
+                </div>
+
+                <div class="pricing-controls">
+                    <div class="control-group">
+                        <span>Monthly Billing</span>
+                        <label class="switch">
+                            <input type="checkbox" id="billingCycle" onchange="updatePricing()">
+                            <span class="slider"></span>
+                        </label>
+                        <span>Yearly Billing <small style="color: #16a34a; font-weight:700;">(10% off)</small></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pricing-grid">
+                <!-- Free Plan -->
+                <div class="pricing-card">
+                    <h3>Free</h3>
+                    <div class="price-display">
+                        <h4 id="price-free">KES 0</h4>
+                        <span id="period-free">/mo</span>
+                    </div>
+                    <ul id="features-free">
+                        <!-- Filled dynamically by JavaScript -->
+                    </ul>
+                    <a href="#" class="btn-select">Get Started</a>
+                </div>
+
+                <!-- Starter Plan -->
+                <div class="pricing-card">
+                    <h3>Starter</h3>
+                    <div class="price-display">
+                        <h4 id="price-starter">KES 2,000</h4>
+                        <span id="period-starter">/mo</span>
+                    </div>
+                    <ul id="features-starter">
+                        <!-- Filled dynamically by JavaScript -->
+                    </ul>
+                    <a href="#" class="btn-select">Choose</a>
+                </div>
+
+                <!-- Pro Plan -->
+                <div class="pricing-card featured">
+                    <div class="badge-pop">Popular Core</div>
+                    <h3>Pro</h3>
+                    <div class="price-display">
+                        <h4 id="price-pro">KES 5,000</h4>
+                        <span id="period-pro">/mo</span>
+                    </div>
+                    <ul id="features-pro">
+                        <!-- Filled dynamically by JavaScript -->
+                    </ul>
+                    <a href="#" class="btn-select">Choose</a>
+                </div>
+
+                <!-- Business Plan -->
+                <div class="pricing-card">
+                    <h3>Business</h3>
+                    <div class="price-display">
+                        <h4 id="price-business">KES 8,000</h4>
+                        <span id="period-business">/mo</span>
+                    </div>
+                    <ul id="features-business">
+                        <!-- Filled dynamically by JavaScript -->
+                    </ul>
+                    <a href="#" class="btn-select">Choose</a>
+                </div>
+
+                <!-- Enterprise Plan -->
+                <div class="pricing-card">
+                    <h3>Enterprise</h3>
+                    <div class="price-display">
+                        <h4 id="price-enterprise">KES 12,000</h4>
+                        <span id="period-enterprise">/mo</span>
+                    </div>
+                    <ul id="features-enterprise">
+                        <!-- Filled dynamically by JavaScript -->
+                    </ul>
+                    <a href="#" class="btn-select">Choose</a>
+                </div>
+
+                <!-- All Access Plan -->
+                <div class="pricing-card">
+                    <h3>All Access</h3>
+                    <div class="price-display">
+                        <h4 id="price-allaccess">KES 20,000</h4>
+                        <span id="period-allaccess">/mo</span>
+                    </div>
+                    <ul id="features-allaccess">
+                        <!-- Filled dynamically by JavaScript -->
+                    </ul>
+                    <a href="#" class="btn-select">Choose</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="about">
+        <div class="about-wrapper">
+            <div class="about-content">
+                <div class="sectionTitle" style="text-align: left; margin-bottom: 24px;">
+                    <span>Our Enterprise Mandate</span>
+                    <h2>Designed for high-throughput modern environments</h2>
+                </div>
+                <p>Acacia Books ERP grew out of a clear operational need: existing corporate workflow software was far too rigid, fragile, and siloed.</p>
+                <p>Our infrastructure empowers businesses to connect their catalogs, distributed inventories, operational pipelines, and secure messaging environments within a single platform engine.</p>
+                <div class="about-stats">
+                    <div class="about-stat-box">
+                        <h4>24/7</h4>
+                        <p>Global Live NOC Coverage</p>
+                    </div>
+                    <div class="about-stat-box">
+                        <h4>&lt;14ms</h4>
+                        <p>Database Query Execution</p>
+                    </div>
+                </div>
+            </div>
+            <div style="display: flex; justify-content: center;">
+                <img src="https://images.unsplash.com/photo-1551434678-e076c223a692?auto=format&fit=crop&w=600&q=80" alt="Enterprise Data Operations Center" style="width: 100%; max-width: 500px; border-radius: 16px; box-shadow: 0 20px 40px rgba(0,0,0,0.05); border: 1px solid #e2e8f0;">
+            </div>
+        </div>
+    </section>
+
+    <section class="section-alt" id="support">
+        <div class="sectionTitle">
+            <span>Support Infrastructure</span>
+            <h2>Integrated Technical Helpdesks</h2>
+            <p>Connect immediately with engineering deployment specialists, download implementation guidelines, or review system availability dashboards.</p>
+        </div>
+        <div class="support-grid">
+            <div class="support-card">
+                <i class="fa-solid fa-bug"></i>
+                <h4>Issue Pipelines</h4>
+                <p>Report technical anomalies straight to our internal core team arrays.</p>
+                <a href="#">Initialize Ticket <i class="fa-solid fa-arrow-right"></i></a>
+            </div>
+            <div class="support-card">
+                <i class="fa-solid fa-file-code"></i>
+                <h4>Developer Center</h4>
+                <p>Access core REST API endpoints, webhooks, and sandbox environments.</p>
+                <a href="#">Read Docs <i class="fa-solid fa-arrow-right"></i></a>
+            </div>
+            <div class="support-card">
+                <i class="fa-solid fa-network-wired"></i>
+                <h4>Infrastructure Status</h4>
+                <p>Monitor real-time system metrics across global network clusters.</p>
+                <a href="#">View Monitor <i class="fa-solid fa-arrow-right"></i></a>
+            </div>
+            <div class="support-card">
+                <i class="fa-solid fa-user-shield"></i>
+                <h4>Compliance Bureau</h4>
+                <p>Review standard data encryption parameters, SLA agreements, and audits.</p>
+                <a href="#">Verify Security <i class="fa-solid fa-arrow-right"></i></a>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta">
+        <div class="ctaBox">
+            <div>
+                <h2>Ready to centralize your operations?</h2>
+                <p>Connect with our solutions engineers to build an optimal deployment footprint configuration for your enterprise data environment today.</p>
+                <div class="ctaButtons">
+                    <a href="#modules" class="ctaPrimary">Provision Live Instance</a>
+                    <a href="#support" class="ctaSecondary">Contact Systems Engineering</a>
+                </div>
+            </div>
+            <div class="ctaCard">
+                <h3>Global Instance Overview</h3>
+                <div class="ctaItem"><span>Central Router Version</span><strong>v4.12.2-stable</strong></div>
+                <div class="ctaItem"><span>Primary Cloud Environment</span><strong>AWS / Multi-Region Sync</strong></div>
+                <div class="ctaItem"><span>Default Transport Protocols</span><strong>TLS 1.3 / gRPC Matrix</strong></div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footerGrid">
+            <div class="footerLogo">
+                <h2>Acacia Books ERP</h2>
+                <p>Next-generation, highly resilient enterprise operational software designed to scale corporate growth across global commerce channels.</p>
+                <div class="social">
+                    <a href="#"><i class="fa-brands fa-github"></i></a>
+                    <a href="#"><i class="fa-brands fa-linkedin"></i></a>
+                    <a href="#"><i class="fa-brands fa-x-twitter"></i></a>
+                </div>
+            </div>
+            <div class="footerColumn">
+                <h3>Architecture</h3>
+                <ul>
+                    <li><a href="#modules">System Engine Array</a></li>
+                    <li><a href="#pricing">Price Matrix Planes</a></li>
+                    <li><a href="#">API Infrastructure</a></li>
+                </ul>
+            </div>
+            <div class="footerColumn">
+                <h3>Solutions</h3>
+                <ul>
+                    <li><a href="#">Logistics Routings</a></li>
+                    <li><a href="#">Financial Ledgers</a></li>
+                    <li><a href="#">Metadata Engines</a></li>
+                </ul>
+            </div>
+            <div class="footerColumn">
+                <h3>Support</h3>
+                <ul>
+                    <li><a href="#support">Developer Center</a></li>
+                    <li><a href="#support">Issue Pipelines</a></li>
+                    <li><a href="#support">System Infrastructure</a></li>
+                </ul>
+            </div>
+            <div class="footerColumn">
+                <h3>Corporate</h3>
+                <ul>
+                    <li><a href="#about">Enterprise Mandate</a></li>
+                    <li><a href="#">Security Controls</a></li>
+                    <li><a href="#">Legal / Privacy</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="bottomFooter">
+            <p>&copy; 2026 Acacia Books Platform Ecosystem. All operational rights reserved globally.</p>
+            <p>System Status: <span style="color:#16a34a; font-weight:700;"><i class="fa-solid fa-circle-check"></i> Online Operational Grid</span></p>
+        </div>
+    </footer>
+
+    <script>
+        const priceMatrices = {
+            books: {
+                free: 0,
+                starter: 2000,
+                pro: 5000,
+                business: 8000,
+                enterprise: 12000,
+                allaccess: 20000
+            },
+            all: {
+                free: 0,
+                starter: 4500,
+                pro: 9500,
+                business: 15000,
+                enterprise: 24000,
+                allaccess: 38000
+            }
+        };
+
+        const featureMatrices = {
+            books: {
+                free: `
+                    <li><i class="fa-solid fa-book"></i> 📖 Book Catalog Engine (Basic)</li>
+                    <li><i class="fa-solid fa-chart-simple"></i> 📊 Core Metadata Dashboard</li>
+                    <li><i class="fa-solid fa-wallet"></i> 💰 Standard Author Royalties Array</li>
+                    <li class="none"><i class="fa-solid fa-box"></i> 📦 Inventory Balancing Engine: Missing</li>
+                    <li class="none"><i class="fa-solid fa-cart-shopping"></i> 🚚 Sales Channels & Routing: Missing</li>
+                `,
+                starter: `
+                    <li><i class="fa-solid fa-book"></i> 📖 Complete Book Catalog Engine</li>
+                    <li><i class="fa-solid fa-chart-simple"></i> 📊 Dashboard Data Analysis Pipelines</li>
+                    <li><i class="fa-solid fa-wallet"></i> 💰 Multi-format tracking & metadata sync</li>
+                    <li><i class="fa-solid fa-users"></i> 👥 Structural Author Royalties Layers</li>
+                `,
+                pro: `
+                    <li><i class="fa-solid fa-book"></i> 📖 Complete Book Catalog Engine</li>
+                    <li><i class="fa-solid fa-chart-simple"></i> 📊 Complete Metadata Sync Layouts</li>
+                    <li><i class="fa-solid fa-wallet"></i> 💰 Hierarchical indexes & format builds</li>
+                    <li><i class="fa-solid fa-users"></i> 👥 Programmatic bulk ingestion tools</li>
+                    <li><i class="fa-solid fa-calculator"></i> 🧮 Secure accounting Ledger Visibility</li>
+                `,
+                business: `
+                    <li><i class="fa-solid fa-book"></i> 📖 Complete Book Catalog Engine</li>
+                    <li><i class="fa-solid fa-chart-simple"></i> 📊 Global scale publishing templates</li>
+                    <li><i class="fa-solid fa-wallet"></i> 💰 Real-time royalties analytics tools</li>
+                    <li><i class="fa-solid fa-calculator"></i> 🧮 Multi-currency structural balance sheets</li>
+                    <li><i class="fa-solid fa-gear"></i> ⚙️ Custom operational metadata definitions</li>
+                `,
+                enterprise: `
+                    <li><i class="fa-solid fa-book"></i> 📖 Infinite Book Catalogs Matrix</li>
+                    <li><i class="fa-solid fa-chart-simple"></i> 📊 Real-time publishing pipeline audits</li>
+                    <li><i class="fa-solid fa-link"></i> 🔗 Custom Catalog REST API integrations</li>
+                    <li><i class="fa-solid fa-laptop-code"></i> 💻 On-premise deployment support infrastructure</li>
+                `,
+                allaccess: `
+                    <li><i class="fa-solid fa-book"></i> 📖 Infinite Book Catalogs Matrix</li>
+                    <li><i class="fa-solid fa-link"></i> 🔗 Total API Access Hooks & System Sandbox</li>
+                    <li><i class="fa-solid fa-headset"></i> 💻 Complete Developer Support Helpdesk Network</li>
+                    <li><i class="fa-solid fa-folder-open"></i> 📁 Encrypted secure platform database frames</li>
+                `
+            },
+            all: {
+                free: `
+                    <li><i class="fa-solid fa-chart-simple"></i> 📊 Shared Multi-Module Dashboard</li>
+                    <li><i class="fa-solid fa-box"></i> 📦 Basic Asset Routing Grid</li>
+                    <li class="none"><i class="fa-solid fa-wallet"></i> 💰 Ledgers & Expenses Matrix: Inactive</li>
+                    <li class="none"><i class="fa-solid fa-envelope-open-text"></i> ✉️ Cryptographic Mail Router: Inactive</li>
+                `,
+                starter: `
+                    <li><i class="fa-solid fa-book"></i> 📖 Core Catalog Handling Array</li>
+                    <li><i class="fa-solid fa-cart-shopping"></i> 🛒 Integrated Order Pipelines Engine</li>
+                    <li><i class="fa-solid fa-boxes-stacked"></i> 📦 Multi-warehouse inventory matching</li>
+                    <li><i class="fa-solid fa-wallet"></i> 💰 Ledger accounts & spending controls</li>
+                `,
+                pro: `
+                    <li><i class="fa-solid fa-book"></i> 📖 Core Catalog Handling Array</li>
+                    <li><i class="fa-solid fa-cart-shopping"></i> 🛒 Programmatic multi-channel billing layers</li>
+                    <li><i class="fa-solid fa-boxes-stacked"></i> 📦 Live cross-site inventory balancing loops</li>
+                    <li><i class="fa-solid fa-wallet"></i> 💰 Multi-departmental structural ledger sets</li>
+                    <li><i class="fa-solid fa-list-check"></i> 📊 Shared milestone resource timelines</li>
+                `,
+                business: `
+                    <li><i class="fa-solid fa-book"></i> 📖 Full Platform Module Stack Suite</li>
+                    <li><i class="fa-solid fa-cart-shopping"></i> 🛒 Global B2B distribution & tax engines</li>
+                    <li><i class="fa-solid fa-boxes-stacked"></i> 📦 Automated stock forecasting clusters</li>
+                    <li><i class="fa-solid fa-wallet"></i> 💰 Compliance-level ledger and budget control systems</li>
+                    <li><i class="fa-solid fa-list-check"></i> 📊 Complex Gantt resource timeline loading layouts</li>
+                `,
+                enterprise: `
+                    <li><i class="fa-solid fa-cubes"></i> 🛠️ Absolute Core Modular Architecture Unlocked</li>
+                    <li><i class="fa-solid fa-envelope-open-text"></i> ✉️ DKIM/SPF Cryptographic Secure Mail Rails</li>
+                    <li><i class="fa-solid fa-link"></i> 🔗 Enterprise-level programmatic rest webhooks</li>
+                    <li><i class="fa-solid fa-laptop-code"></i> 💻 Multi-region system cloud deployment setup</li>
+                `,
+                allaccess: `
+                    <li><i class="fa-solid fa-cubes"></i> 🛠️ Absolute Core Modular Architecture Unlocked</li>
+                    <li><i class="fa-solid fa-envelope-open-text"></i> ✉️ Complete cryptographic secure alert engines</li>
+                    <li><i class="fa-solid fa-link"></i> 🔗 Full REST API, sandbox, and hooks stack framework</li>
+                    <li><i class="fa-solid fa-headset"></i> 💻 24/7 Priority engineering ticket pipelines</li>
+                    <li><i class="fa-solid fa-folder-open"></i> 📁 Infinite encrypted server data pipelines</li>
+                `
+            }
+        };
+
+        let currentActiveModule = 'books';
+
+        function switchModule(moduleType, buttonElement) {
+            currentActiveModule = moduleType;
+            document.querySelectorAll('.module-tab-btn').forEach(btn => btn.classList.remove('active'));
+            buttonElement.classList.add('active');
+            updatePricing();
+        }
+
+        function updatePricing() {
+            const isYearly = document.getElementById("billingCycle").checked;
+            const periodLabel = isYearly ? "/yr" : "/mo";
+            const discountFactor = isYearly ? (12 * 0.90) : 1;
+            
+            const workingMatrix = priceMatrices[currentActiveModule];
+            const workingFeatures = featureMatrices[currentActiveModule];
+            const plans = ['free', 'starter', 'pro', 'business', 'enterprise', 'allaccess'];
+            
+            plans.forEach(plan => {
+                const element = document.getElementById(`price-${plan}`);
+                const periodElement = document.getElementById(`period-${plan}`);
+                const featureListElement = document.getElementById(`features-${plan}`);
+                
+                let calculatedPrice = workingMatrix[plan] * discountFactor;
+                
+                element.innerText = `KES ${Math.round(calculatedPrice).toLocaleString()}`;
+                periodElement.innerText = periodLabel;
+                if (featureListElement) {
+                    featureListElement.innerHTML = workingFeatures[plan];
+                }
+            });
+        }
+
+        function initCounters() {
+            const counters = document.querySelectorAll('.counter');
+            counters.forEach(counter => {
+                const target = parseInt(counter.getAttribute('data-target'));
+                let current = 0;
+                const increment = target / 50;
+                const updateCount = () => {
+                    if(current < target) {
+                        current += increment;
+                        counter.innerText = Math.ceil(current).toLocaleString() + (target > 500 ? '+' : '');
+                        setTimeout(updateCount, 20);
+                    } else {
+                        counter.innerText = target.toLocaleString() + (target > 500 ? '+' : '');
+                    }
+                };
+                updateCount();
+            });
+        }
+
+        window.onload = () => {
+            updatePricing();
+            initCounters();
+        };
+    </script>
 </body>
-
 </html>
