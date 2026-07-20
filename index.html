@@ -125,6 +125,7 @@
             transform: translateY(-1px);
         }
 
+        /* Hero Container adjustments for background slides */
         .hero {
             margin-top: 80px;
             min-height: 85vh;
@@ -132,14 +133,55 @@
             align-items: center;
             justify-content: space-between;
             padding: 80px 5%;
-            background: radial-gradient(100% 100% at 50% 0%, rgba(219, 234, 254, 0.25) 0%, rgba(255, 255, 255, 0) 100%), #ffffff;
             position: relative;
+            overflow: hidden;
+            background: #0f172a; /* Fallback baseline */
         }
 
+        /* Background Sliding Engine Styles */
+        .hero-slider-wrapper {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+
+        .hero-slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            opacity: 0;
+            transition: opacity 1.2s ease-in-out;
+        }
+
+        .hero-slide.active {
+            opacity: 1;
+        }
+
+        /* Overlay mask layer protecting structural content typography contrast */
+        .hero-slider-wrapper::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to right, rgba(15, 23, 42, 0.85) 40%, rgba(15, 23, 42, 0.5) 100%);
+            z-index: 2;
+        }
+
+        /* Adapting elements to white text profiles for background imagery compatibility */
         .leftHero {
             width: 50%;
             position: relative;
-            z-index: 2;
+            z-index: 3;
         }
 
         .badge {
@@ -147,12 +189,12 @@
             align-items: center;
             gap: 8px;
             padding: 6px 14px;
-            background: #eff6ff;
-            border: 1px solid #bfdbfe;
+            background: rgba(37, 99, 235, 0.15);
+            border: 1px solid rgba(37, 99, 235, 0.3);
             border-radius: 99px;
             font-size: 13px;
             font-weight: 600;
-            color: #2563eb;
+            color: #60a5fa;
             margin-bottom: 24px;
         }
 
@@ -160,7 +202,7 @@
             font-size: 54px;
             font-weight: 800;
             line-height: 1.15;
-            color: #0f172a;
+            color: #ffffff;
             letter-spacing: -1px;
             margin-bottom: 24px;
         }
@@ -168,7 +210,7 @@
         .leftHero p {
             font-size: 18px;
             line-height: 1.6;
-            color: #475569;
+            color: #cbd5e1;
             margin-bottom: 36px;
         }
 
@@ -195,18 +237,19 @@
 
         .secondary {
             padding: 14px 28px;
-            border: 1px solid #cbd5e1;
-            background: #fff;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            background: rgba(255, 255, 255, 0.05);
             border-radius: 8px;
-            color: #334155;
+            color: #ffffff;
             font-size: 16px;
             font-weight: 600;
+            backdrop-filter: blur(5px);
             transition: all 0.2s;
         }
 
         .secondary:hover {
-            background: #f8fafc;
-            border-color: #94a3b8;
+            background: rgba(255, 255, 255, 0.15);
+            border-color: rgba(255, 255, 255, 0.4);
         }
 
         .rightHero {
@@ -214,22 +257,23 @@
             display: flex;
             justify-content: center;
             position: relative;
-            z-index: 2;
+            z-index: 3;
         }
 
         .preview {
             width: 100%;
             max-width: 480px;
-            background: #fff;
+            background: rgba(30, 41, 59, 0.7);
+            backdrop-filter: blur(12px);
             border-radius: 16px;
             padding: 32px;
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.08);
-            border: 1px solid #f1f5f9;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
         .preview h2 {
             font-size: 22px;
-            color: #0f172a;
+            color: #ffffff;
             margin-bottom: 24px;
             font-weight: 700;
         }
@@ -239,40 +283,41 @@
             justify-content: space-between;
             align-items: center;
             padding: 16px;
-            background: #f8fafc;
+            background: rgba(15, 23, 42, 0.6);
             border-radius: 8px;
             margin-bottom: 12px;
-            border: 1px solid #f1f5f9;
+            border: 1px solid rgba(255, 255, 255, 0.05);
         }
 
         .item span {
             font-size: 14px;
             font-weight: 500;
-            color: #64748b;
+            color: #94a3b8;
         }
 
         .item strong {
             font-size: 24px;
-            color: #2563eb;
+            color: #60a5fa;
             font-weight: 700;
         }
 
         .float {
             position: absolute;
-            background: #fff;
+            background: rgba(30, 41, 59, 0.85);
+            backdrop-filter: blur(8px);
             padding: 12px 20px;
             border-radius: 99px;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
             font-weight: 600;
             font-size: 14px;
-            color: #1e293b;
-            border: 1px solid #e2e8f0;
+            color: #ffffff;
+            border: 1px solid rgba(255, 255, 255, 0.1);
             display: flex;
             align-items: center;
             gap: 8px;
         }
 
-        .float i { color: #2563eb; }
+        .float i { color: #60a5fa; }
         .float1 { left: -20px; top: 60px; }
         .float2 { right: -20px; bottom: 60px; }
 
@@ -568,9 +613,10 @@
             .modules, .solutions-grid { grid-template-columns: repeat(2, 1fr); }
             .support-grid { grid-template-columns: repeat(2, 1fr); }
             .footerGrid { grid-template-columns: 1fr; }
-        }
-        @media(max-width: 768px) {
-            .pricing-grid { grid-template-columns: 1fr; }
+            /* Align background layouts when hero flips vertical on small displays */
+            .hero-slider-wrapper::before {
+                background: rgba(15, 23, 42, 0.85);
+            }
         }
         @media(max-width: 640px) {
             .modules, .solutions-grid, .support-grid { grid-template-columns: 1fr; }
@@ -608,17 +654,25 @@
     </header>
 
     <section class="hero">
+        <!-- Integrated Background Slideshow Structure -->
+        <div class="hero-slider-wrapper">
+            <div class="hero-slide active" style="background-image: url('https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=1920&q=80');"></div>
+            <div class="hero-slide" style="background-image: url('https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1920&q=80');"></div>
+            <div class="hero-slide" style="background-image: url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1920&q=80');"></div>
+        </div>
+
         <div class="leftHero">
             <div class="badge">
                 <i class="fa-solid fa-shield-halved"></i> Cloud-Native Enterprise Architecture
             </div>
             <h1>The modern operating system for corporate growth.</h1>
             <p>
-                Acacia Books ERP integrates structural sales, book catalogs, inventory balancing, business expenses, agile projects, and secure mail routing into a highly flexible architecture.
+                Acacia Books ERP integrates structural sales, book catalogs, inventory balancing, business expenses, agile projects, and secure mail routing into a highly flexible architecture. 
+                Built to support multi-module deployment tiers, every standalone application ecosystem maps seamlessly into a unified operational layout designed to eliminate structural friction and protect organizational margins.
             </p>
             <div class="heroButtons">
                 <a href="#modules" class="primary">Explore Modules</a>
-                <a href="#solutions" class="secondary">See Solutions</a>
+                <a href="#pricing" class="secondary">View Pricing</a>
             </div>
         </div>
         <div class="rightHero">
@@ -656,17 +710,19 @@
             <div class="solution-card">
                 <div class="sol-icon"><i class="fa-solid fa-seedling"></i></div>
                 <h3>SMEs & Growth Stages</h3>
-                <p>Standardize operational pipelines, establish unified expense management, and eliminate isolated processes without complex setups.</p>
+                <p>Standardize your operational pipelines early, establish unified expense management structures, and completely eliminate isolated data processes without dealing with complex software configurations. This tailored growth framework gives emerging businesses immediate structural clarity by synchronizing basic book catalogs using our Book Catalog Engine, processing initial storefront distributions via the Sales Engine, and setting up automated ledger controls that adapt seamlessly to expanding team sizes. By avoiding fragile legacy architecture spreadsheets, growing organizations protect their operating capital margins and lay down a perfectly scalable modular baseline ready for sudden market demand spikes.</p>
             </div>
+
             <div class="solution-card">
                 <div class="sol-icon"><i class="fa-solid fa-building"></i></div>
                 <h3>Mid-Market Enterprises</h3>
-                <p>Synchronize inventory across warehouse sites, handle multi-currency accounting, and unlock real-time resource allocations.</p>
+                <p>Synchronize physical inventory balances safely across multiple distinct warehouse sites, handle multi-currency corporate accounting cycles seamlessly, and unlock real-time resource allocations across rapidly multiplying corporate divisions. This mid-market framework acts as an operational bridge, connecting dynamic customer relationship matrices through our advanced CRM Framework with secure cryptographic Mail Routers and automated Payroll Management Engines. Your administration can easily eliminate operational friction, optimize cross-docking logistics networks, manage dynamic departmental budgets via the Expenses Array, and keep comprehensive performance records to outpace scaling competition safely.</p>
             </div>
+
             <div class="solution-card">
                 <div class="sol-icon"><i class="fa-solid fa-network-wired"></i></div>
                 <h3>Large-Scale Corporations</h3>
-                <p>Deploy custom data strategies with robust role permission layers, advanced data compliance engines, and infinite API integrations.</p>
+                <p>Deploy highly custom data strategies equipped with robust role permission layers, advanced corporate data compliance engines, and infinite REST API integrations across complex global infrastructures. Designed for high-throughput conglomerate ecosystems, this large-scale corporate tier supports complex multi-region cloud deployment setups driven by our detailed Agile Project Matrix, runs isolated testing sandboxes safely, and maintains absolute cryptographic data protection protocols continuously. Senior executives gain a unified operational grid that monitors high-volume publishing workflows, audits global financial ledgers instantly, and orchestrates massive cross-border corporate distribution pipelines seamlessly through real-time telemetry updates.</p>
             </div>
         </div>
     </section>
@@ -678,10 +734,11 @@
             <p>Activate specific modules safely across your organizational structure. Each engine functions as a standalone capability or blends into a unified operational grid.</p>
         </div>
         <div class="modules">
+            
             <div class="module">
                 <div class="icon blue"><i class="fa-solid fa-book"></i></div>
                 <h3>Book Catalog Engine</h3>
-                <p>Architect complex hierarchical indexes, structural metadata, author royalties, and format variations with unified system assets.</p>
+                <p>Architect complex hierarchical indexes, structural metadata frameworks, author royalty distributions, and multi-format product variations using unified digital system assets. This highly scalable engine empowers publishing corporations to meticulously manage comprehensive catalogs, handle massive volume updates via programmatic bulk data ingestion, and enforce unified meta-tag alignment rules globally. It integrates completely into downstream logistics networks to provide immediate catalog visibility across distributed retail networks, ensuring metadata changes propagate instantly with absolute transactional integrity across your digital publishing pipeline grids.</p>
                 <div class="features">
                     <div>Multi-format tracking</div>
                     <div>Meta sync</div>
@@ -689,71 +746,23 @@
                     <div>Bulk ingestion</div>
                 </div>
                 <div class="learn">
-                    <a href="#">Technical documentation</a>
+                    <a href="https://kimani254star.github.io/acacia-books/">Launch Module Engine</a>
                     <i class="fa-solid fa-arrow-right"></i>
                 </div>
             </div>
 
             <div class="module">
-                <div class="icon green"><i class="fa-solid fa-cart-shopping"></i></div>
-                <h3>Sales & Distribution</h3>
-                <p>Automate structural billing pipelines, handle programmatic price sheets, and process orders safely across global channels.</p>
+                <div class="icon purple"><i class="fa-solid fa-users-gear"></i></div>
+                <h3>CRM & Engagement</h3>
+                <p>Track partner communications, coordinate strategic publisher pipelines, and manage institutional relationship matrices seamlessly within a centralized intelligence repository. This module offers deep pipeline visualization tools designed to monitor entire contact lifecycles, record complex B2B negotiations, manage lead generation sequences, and establish secure white-labeled partner portals for smooth external collaboration frameworks. By standardizing communication protocols across sales agents, your organization eliminates data silos, optimizes interaction histories, and successfully tracks corporate conversion metrics to unlock maximum lifetime value from distributed client ecosystems.</p>
                 <div class="features">
-                    <div>Automated pricing</div>
-                    <div>Tax engines</div>
-                    <div>B2B invoicing</div>
-                    <div>Fulfillment tracking</div>
+                    <div>Contact lifecycles</div>
+                    <div>Deal tracking</div>
+                    <div>Interaction logs</div>
+                    <div>Partner portals</div>
                 </div>
                 <div class="learn">
-                    <a href="#">Technical documentation</a>
-                    <i class="fa-solid fa-arrow-right"></i>
-                </div>
-            </div>
-
-            <div class="module">
-                <div class="icon orange"><i class="fa-solid fa-boxes-stacked"></i></div>
-                <h3>Inventory Balancing</h3>
-                <p>Real-time physical asset tracking, multi-warehouse location routing, predictive auto-replenishment loops, and audit pipelines.</p>
-                <div class="features">
-                    <div>Multi-site sync</div>
-                    <div>Barcoding array</div>
-                    <div>Stock forecasting</div>
-                    <div>Audit tracking</div>
-                </div>
-                <div class="learn">
-                    <a href="#">Technical documentation</a>
-                    <i class="fa-solid fa-arrow-right"></i>
-                </div>
-            </div>
-
-            <div class="module">
-                <div class="icon purple"><i class="fa-solid fa-wallet"></i></div>
-                <h3>Expense & Ledger</h3>
-                <p>Unify operational spending, structure recurring ledger outlays, track dynamic departmental budgets, and compile clear compliance audits.</p>
-                <div class="features">
-                    <div>Ledger visibility</div>
-                    <div>Receipt automation</div>
-                    <div>Budget limits</div>
-                    <div>Tax grouping</div>
-                </div>
-                <div class="learn">
-                    <a href="#">Technical documentation</a>
-                    <i class="fa-solid fa-arrow-right"></i>
-                </div>
-            </div>
-
-            <div class="module">
-                <div class="icon cyan"><i class="fa-solid fa-list-check"></i></div>
-                <h3>Agile Projects Matrix</h3>
-                <p>Coordinate structural organizational shifts via interactive roadmap Gantts, milestones, and shared personnel resource timelines.</p>
-                <div class="features">
-                    <div>Resource loading</div>
-                    <div>Gantt visualizers</div>
-                    <div>Task logic</div>
-                    <div>Time allocation</div>
-                </div>
-                <div class="learn">
-                    <a href="#">Technical documentation</a>
+                    <a href="https://kimani254star.github.io/acacia-crm/?from=books#dashboard">Launch Module Engine</a>
                     <i class="fa-solid fa-arrow-right"></i>
                 </div>
             </div>
@@ -761,7 +770,7 @@
             <div class="module">
                 <div class="icon rose"><i class="fa-solid fa-envelope-open-text"></i></div>
                 <h3>Secure Mail Router</h3>
-                <p>Programmatic internal communications, custom automated operational updates, and secure cryptographic delivery rails.</p>
+                <p>Deploy programmatic internal corporate communications, configure automated system updates, and route secure cryptographic message delivery rails with advanced administrative command oversight. Engineered for mission-critical reliability, this high-throughput router enforces strict DKIM and SPF compliance validation protocols to protect outbound domains while keeping granular activity record logs for compliance tracking audits. You can easily build complex, condition-triggered HTML message template flows that dynamically insert real-time ERP dataset properties, ensuring your client notification grids run smoothly, securely, and with zero internal script delivery degradation.</p>
                 <div class="features">
                     <div>Automated alerts</div>
                     <div>DKIM/SPF rules</div>
@@ -769,7 +778,87 @@
                     <div>Template logic</div>
                 </div>
                 <div class="learn">
-                    <a href="#">Technical documentation</a>
+                    <a href="https://kimani254star.github.io/acacia-mail/">Launch Module Engine</a>
+                    <i class="fa-solid fa-arrow-right"></i>
+                </div>
+            </div>
+
+            <div class="module">
+                <div class="icon green"><i class="fa-solid fa-cart-shopping"></i></div>
+                <h3>Sales & Distribution</h3>
+                <p>Automate structural corporate billing pipelines, orchestrate programmatic custom price sheets, and process incoming multi-channel retail orders safely across disparate global transaction channels. This robust commercial execution engine calculates multi-jurisdictional tax parameters dynamically, issues structured legal B2B invoices automatically, and coordinates physical item delivery with integrated downstream order fulfillment tracking systems. By standardizing global distribution processes, the sales layer protects profit margins, minimizes manual invoicing anomalies, and offers senior management comprehensive visibility into corporate revenue realization pipelines in real time.</p>
+                <div class="features">
+                    <div>Automated pricing</div>
+                    <div>Tax engines</div>
+                    <div>B2B invoicing</div>
+                    <div>Fulfillment tracking</div>
+                </div>
+                <div class="learn">
+                    <a href="https://kimani254star.github.io/project-hub/#revenue">Launch Module Engine</a>
+                    <i class="fa-solid fa-arrow-right"></i>
+                </div>
+            </div>
+
+            <div class="module">
+                <div class="icon cyan"><i class="fa-solid fa-list-check"></i></div>
+                <h3>Projects & Plans Matrix</h3>
+                <p>Coordinate major structural organizational shifts using interactive project roadmap Gantt charts, customized operational milestones, and shared personnel resource allocation timelines. Designed for agile corporate governance, this collaborative environment enables project managers to monitor real-time resource loading balances, track granular task logic dependencies, and log precise time allocations across multiple engineering divisions simultaneously. The matrix visualizer translates complex strategic planning frameworks into clear, execution-oriented tracking screens, ensuring critical enterprise developmental phases finish completely on schedule without resource burnouts.</p>
+                <div class="features">
+                    <div>Resource loading</div>
+                    <div>Gantt visualizers</div>
+                    <div>Task logic</div>
+                    <div>Time allocation</div>
+                </div>
+                <div class="learn">
+                    <a href="https://kimani254star.github.io/Acacia-Plans/">Launch Module Engine</a>
+                    <i class="fa-solid fa-arrow-right"></i>
+                </div>
+            </div>
+
+            <div class="module">
+                <div class="icon orange"><i class="fa-solid fa-wallet"></i></div>
+                <h3>Expense & Ledger</h3>
+                <p>Unify operational spending structures, organize recurring financial ledger outlays, monitor dynamic departmental budgets, and compile comprehensive tax compliance audit packages automatically. Featuring automated receipt parsing pipelines and strict policy enforcement limits, this module stops unauthorized spending before it happens while maintaining an immutable transactional trace across all corporate accounts. Finance teams gain granular visibility into daily cost allocations, allowing them to optimize corporate cash flows, group cross-border taxes efficiently, and generate deep financial health statements for stakeholder presentations.</p>
+                <div class="features">
+                    <div>Ledger visibility</div>
+                    <div>Receipt automation</div>
+                    <div>Budget limits</div>
+                    <div>Tax grouping</div>
+                </div>
+                <div class="learn">
+                    <a href="https://kimani254star.github.io/Acacia-books-expenses-/">Launch Module Engine</a>
+                    <i class="fa-solid fa-arrow-right"></i>
+                </div>
+            </div>
+
+            <div class="module">
+                <div class="icon blue"><i class="fa-solid fa-boxes-stacked"></i></div>
+                <h3>Inventory Balancing</h3>
+                <p>Maintain absolute real-time physical asset tracking, coordinate cross-docking operations across multiple warehouse sites, and run predictive auto-replenishment loops to eliminate out-of-stock scenarios entirely. This logistics core uses advanced barcoding arrays to monitor item movement levels, analyze historical stock turnover patterns for automated forecasting, and generate detailed data audit trails for warehouse managers. By optimizing storage allocations and inventory distribution paths, your enterprise cuts holding costs, avoids product expiration issues, and satisfies incoming B2B supply requests with high precision execution.</p>
+                <div class="features">
+                    <div>Multi-site sync</div>
+                    <div>Barcoding array</div>
+                    <div>Stock forecasting</div>
+                    <div>Audit tracking</div>
+                </div>
+                <div class="learn">
+                    <a href="https://kimani254star.github.io/Acacia-books-inventory-/">Launch Module Engine</a>
+                    <i class="fa-solid fa-arrow-right"></i>
+                </div>
+            </div>
+
+            <div class="module">
+                <div class="icon green"><i class="fa-solid fa-money-check-dollar"></i></div>
+                <h3>Payroll & Compensation</h3>
+                <p>Manage corporate salary grids securely, execute localized statutory tax calculations automatically, organize direct bank disbursements, and manage complex employee benefit matrices within an encrypted database architecture. Built to conform with local regulatory labor laws, this compensation engine automates payslip delivery pipelines, tracks overtime hourly bonuses, manages social security contribution structures, and processes multi-tier commission payouts smoothly. Human resource divisions can now manage complex international team payroll structures, eliminate recalculation human errors, and provide comprehensive year-end corporate tax declarations securely.</p>
+                <div class="features">
+                    <div>Salary structures</div>
+                    <div>Statutory deduction</div>
+                    <div>Payslip automation</div>
+                    <div>Bonus grids</div>
+                </div>
+                <div class="learn">
+                    <a href="https://kimani254star.github.io/Acacia-books-payroll/">Launch Module Engine</a>
                     <i class="fa-solid fa-arrow-right"></i>
                 </div>
             </div>
@@ -807,7 +896,7 @@
             </div>
 
             <div class="pricing-grid">
-                <!-- Free Plan -->
+             
                 <div class="pricing-card">
                     <h3>Free</h3>
                     <div class="price-display">
@@ -815,12 +904,21 @@
                         <span id="period-free">/mo</span>
                     </div>
                     <ul id="features-free">
-                        <!-- Filled dynamically by JavaScript -->
+                        <li>📊 Dashboard</li>
+                        <li>💰 Funds (Basic)</li>
+                        <li>📈 Reports (Basic)</li>
+                        <li>📦 Inventory (Basic)</li>
+                        <li>👥 Customers (Basic)</li>
+                        <li>🚚 Suppliers (Basic)</li>
+                        <li>🧮 Accountant (Basic)</li>
+                        <li>⚙️ Settings (Basic)</li>
+                        <li>💵 Payroll: None</li>
+                        <li>📧 Secure Mail Router</li>
+                        <li>💳 Expense & Ledger</li>
                     </ul>
-                    <a href="#" class="btn-select">Get Started</a>
+                    <a href="https://kimani254star.github.io/acacia-books/" class="btn-select">Get Started</a>
                 </div>
 
-                <!-- Starter Plan -->
                 <div class="pricing-card">
                     <h3>Starter</h3>
                     <div class="price-display">
@@ -828,12 +926,22 @@
                         <span id="period-starter">/mo</span>
                     </div>
                     <ul id="features-starter">
-                        <!-- Filled dynamically by JavaScript -->
+                        <li>📊 Dashboard</li>
+                        <li>💰 Funds</li>
+                        <li>📈 Reports</li>
+                        <li>📦 Inventory</li>
+                        <li>👥 Customers</li>
+                        <li>🚚 Suppliers</li>
+                        <li>🧮 Accountant</li>
+                        <li>💵 Payroll</li>
+                        <li>⚙️ Settings</li>
+                        <li>📧 Secure Mail Router</li>
+                        <li>💳 Expense & Ledger</li>
+                        <li>👥 CRM & Engagement (+ KES 1,500)</li>
                     </ul>
-                    <a href="#" class="btn-select">Choose</a>
+                    <a href="https://kimani254star.github.io/acacia-books/" class="btn-select">Choose</a>
                 </div>
 
-                <!-- Pro Plan -->
                 <div class="pricing-card featured">
                     <div class="badge-pop">Popular Core</div>
                     <h3>Pro</h3>
@@ -842,12 +950,23 @@
                         <span id="period-pro">/mo</span>
                     </div>
                     <ul id="features-pro">
-                        <!-- Filled dynamically by JavaScript -->
+                        <li>📊 Dashboard</li>
+                        <li>💰 Funds</li>
+                        <li>📈 Reports</li>
+                        <li>📦 Inventory</li>
+                        <li>👥 Customers</li>
+                        <li>🚚 Suppliers</li>
+                        <li>🧮 Accountant</li>
+                        <li>💵 Payroll</li>
+                        <li>⚙️ Settings</li>
+                        <li>📧 Secure Mail Router</li>
+                        <li>💳 Expense & Ledger</li>
+                        <li>👥 CRM & Engagement (+ KES 1,500)</li>
+                        <li>🛒 Sales & Distribution (+ KES 1,500)</li>
                     </ul>
-                    <a href="#" class="btn-select">Choose</a>
+                    <a href="https://kimani254star.github.io/acacia-books/" class="btn-select">Choose</a>
                 </div>
 
-                <!-- Business Plan -->
                 <div class="pricing-card">
                     <h3>Business</h3>
                     <div class="price-display">
@@ -855,12 +974,24 @@
                         <span id="period-business">/mo</span>
                     </div>
                     <ul id="features-business">
-                        <!-- Filled dynamically by JavaScript -->
+                        <li>📊 Dashboard</li>
+                        <li>💰 Funds</li>
+                        <li>📈 Reports</li>
+                        <li>📦 Inventory</li>
+                        <li>👥 Customers</li>
+                        <li>🚚 Suppliers</li>
+                        <li>🧮 Accountant</li>
+                        <li>💵 Payroll</li>
+                        <li>⚙️ Settings</li>
+                        <li>📧 Secure Mail Router</li>
+                        <li>💳 Expense & Ledger</li>
+                        <li>👥 CRM & Engagement (+ KES 1,500)</li>
+                        <li>🛒 Sales & Distribution (+ KES 1,500)</li>
+                        <li>📋 Projects & Plans Matrix (+ KES 1,500)</li>
                     </ul>
-                    <a href="#" class="btn-select">Choose</a>
+                    <a href="https://kimani254star.github.io/acacia-books/" class="btn-select">Choose</a>
                 </div>
 
-                <!-- Enterprise Plan -->
                 <div class="pricing-card">
                     <h3>Enterprise</h3>
                     <div class="price-display">
@@ -868,12 +999,27 @@
                         <span id="period-enterprise">/mo</span>
                     </div>
                     <ul id="features-enterprise">
-                        <!-- Filled dynamically by JavaScript -->
+                        <li>📊 Dashboard</li>
+                        <li>💰 Funds</li>
+                        <li>📈 Reports</li>
+                        <li>📦 Inventory</li>
+                        <li>👥 Customers</li>
+                        <li>🚚 Suppliers</li>
+                        <li>🧮 Accountant</li>
+                        <li>💵 Payroll</li>
+                        <li>⚙️ Settings</li>
+                        <li>🔗 Integrations & APIs</li>
+                        <li>💻 On-premise deployment support</li>
+                        <li>📧 Secure Mail Router</li>
+                        <li>💳 Expense & Ledger</li>
+                        <li>👥 CRM & Engagement (+ KES 1,500)</li>
+                        <li>🛒 Sales & Distribution (+ KES 1,500)</li>
+                        <li>📋 Projects & Plans Matrix (+ KES 1,500)</li>
+                        <li>📦 Inventory Balancing (+ KES 1,500)</li>
                     </ul>
-                    <a href="#" class="btn-select">Choose</a>
+                    <a href="https://kimani254star.github.io/acacia-books/" class="btn-select">Choose</a>
                 </div>
 
-                <!-- All Access Plan -->
                 <div class="pricing-card">
                     <h3>All Access</h3>
                     <div class="price-display">
@@ -881,9 +1027,27 @@
                         <span id="period-allaccess">/mo</span>
                     </div>
                     <ul id="features-allaccess">
-                        <!-- Filled dynamically by JavaScript -->
+                        <li>📊 Dashboard</li>
+                        <li>💰 Funds</li>
+                        <li>📈 Reports</li>
+                        <li>📦 Inventory</li>
+                        <li>👥 Customers</li>
+                        <li>🚚 Suppliers</li>
+                        <li>🧮 Accountant</li>
+                        <li>💵 Payroll</li>
+                        <li>⚙️ Settings</li>
+                        <li>🔗 Integrations & APIs</li>
+                        <li>💻 On-premise deployment & priority support</li>
+                        <li>📁 Files</li>
+                        <li>📧 Secure Mail Router</li>
+                        <li>💳 Expense & Ledger</li>
+                        <li>👥 CRM & Engagement (+ KES 1,500)</li>
+                        <li>🛒 Sales & Distribution (+ KES 1,500)</li>
+                        <li>📋 Projects & Plans Matrix (+ KES 1,500)</li>
+                        <li>📦 Inventory Balancing (+ KES 1,500)</li>
+                        <li>💵 Payroll & Compensation (+ KES 1,500)</li>
                     </ul>
-                    <a href="#" class="btn-select">Choose</a>
+                    <a href="https://kimani254star.github.io/acacia-books/" class="btn-select">Choose</a>
                 </div>
             </div>
         </div>
@@ -896,8 +1060,8 @@
                     <span>Our Enterprise Mandate</span>
                     <h2>Designed for high-throughput modern environments</h2>
                 </div>
-                <p>Acacia Books ERP grew out of a clear operational need: existing corporate workflow software was far too rigid, fragile, and siloed.</p>
-                <p>Our infrastructure empowers businesses to connect their catalogs, distributed inventories, operational pipelines, and secure messaging environments within a single platform engine.</p>
+                <p>Acacia Books ERP grew out of a clear operational need: existing corporate workflow software was far too rigid, fragile, and siloed. Our advanced platform redefines how modern businesses structure their core daily processes by replacing outdated, isolated legacy frameworks with an interconnected environment optimized for high-volume enterprise traffic. By establishing direct programmatic relationships across all administrative levels, the architecture helps fast-scaling companies remove friction points, accelerate structural transformations safely, and maintain clean audit histories without handling unstable multi-system integrations.</p>
+                <p>Our infrastructure empowers businesses to connect their catalogs, distributed inventories, operational pipelines, and secure messaging environments within a single platform engine. By bringing together your Book Catalog Engine, dynamic CRM pipelines, secure cryptographic Mail Routers, multi-channel Sales distribution setups, Agile Project Matrices, and automated Expenses frameworks into one workspace, the system coordinates every moving part effortlessly. This deep functional alignment enables modern corporations to unlock instant data visibility, control complex cross-departmental budgets cleanly, protect operational margins, and make fast execution choices based on real-time data metrics.</p>
                 <div class="about-stats">
                     <div class="about-stat-box">
                         <h4>24/7</h4>
@@ -925,25 +1089,28 @@
             <div class="support-card">
                 <i class="fa-solid fa-bug"></i>
                 <h4>Issue Pipelines</h4>
-                <p>Report technical anomalies straight to our internal core team arrays.</p>
+                <p>Report technical anomalies straight to our internal core team arrays, track open engineering tickets, and monitor patch deployments in real time. Our automated triage system parses incoming crash data packets instantly to ensure critical infrastructure disruptions receive immediate priority assignment from on-call systems engineers around the clock. By streamlining communication loops between end-user operations and our debugging clusters, your company maintains total workflow continuation and avoids costly service interruptions during crucial deployment phases.</p>
                 <a href="#">Initialize Ticket <i class="fa-solid fa-arrow-right"></i></a>
             </div>
+
             <div class="support-card">
                 <i class="fa-solid fa-file-code"></i>
                 <h4>Developer Center</h4>
-                <p>Access core REST API endpoints, webhooks, and sandbox environments.</p>
+                <p>Access core REST API endpoints, configure programmatic webhooks, and launch isolated system sandbox environments to test new operational features safely. This complete engineering repository provides structural schema definitions, deep authentication credential guides, and pre-built code payloads matching our modular platform infrastructure layouts seamlessly. Utilizing these interactive environments allows your corporate technical divisions to customize cross-module data pipelines, write automated extraction scripts safely, and accelerate custom ecosystem configurations without touching live production databases.</p>
                 <a href="#">Read Docs <i class="fa-solid fa-arrow-right"></i></a>
             </div>
+
             <div class="support-card">
                 <i class="fa-solid fa-network-wired"></i>
                 <h4>Infrastructure Status</h4>
-                <p>Monitor real-time system metrics across global network clusters.</p>
+                <p>Monitor real-time system metrics across global network clusters, check historical operational health statistics, and receive immediate traffic latency updates from our distributed database instances. This open telemetry dashboard displays server node response rates, active pipeline throughput volumes, and regional cloud hosting health statuses continuously to guarantee complete operational accountability. Your internal IT infrastructure teams can track ongoing system maintenance windows and rely on precise resource performance maps to keep corporate digital ecosystems stable.</p>
                 <a href="#">View Monitor <i class="fa-solid fa-arrow-right"></i></a>
             </div>
+
             <div class="support-card">
                 <i class="fa-solid fa-user-shield"></i>
                 <h4>Compliance Bureau</h4>
-                <p>Review standard data encryption parameters, SLA agreements, and audits.</p>
+                <p>Review standard data encryption parameters, check structural service level agreements, and download certified third-party network security audit document arrays instantly. The bureau ensures our modular engine framework conforms precisely with modern regulatory data privacy compliance boundaries, international financial ledger controls, and encrypted cloud storage protocols across all operational zones. By providing clear tracking records and verified security standard overviews, we enable corporate compliance officers to approve enterprise scaling deployments with absolute confidence.</p>
                 <a href="#">Verify Security <i class="fa-solid fa-arrow-right"></i></a>
             </div>
         </div>
@@ -953,7 +1120,7 @@
         <div class="ctaBox">
             <div>
                 <h2>Ready to centralize your operations?</h2>
-                <p>Connect with our solutions engineers to build an optimal deployment footprint configuration for your enterprise data environment today.</p>
+                <p>Connect with our solutions engineers to build an optimal footprint configuration for your enterprise data environment today.</p>
                 <div class="ctaButtons">
                     <a href="#modules" class="ctaPrimary">Provision Live Instance</a>
                     <a href="#support" class="ctaSecondary">Contact Systems Engineering</a>
@@ -972,12 +1139,20 @@
         <div class="footerGrid">
             <div class="footerLogo">
                 <h2>Acacia Books ERP</h2>
-                <p>Next-generation, highly resilient enterprise operational software designed to scale corporate growth across global commerce channels.</p>
+                <p>Next-generation, highly resilient enterprise operational software designed to scale corporate growth across global commerce channels. Seamlessly integrating modular data ecosystems for modern performance architectures.</p>
                 <div class="social">
                     <a href="#"><i class="fa-brands fa-github"></i></a>
                     <a href="#"><i class="fa-brands fa-linkedin"></i></a>
                     <a href="#"><i class="fa-brands fa-x-twitter"></i></a>
                 </div>
+            </div>
+            <div class="footerColumn">
+                <h3>Contact Details</h3>
+                <ul>
+                    <li><a href="tel:0717346231"><i class="fa-solid fa-phone" style="font-size: 12px; margin-right: 4px;"></i> 0717346231</a></li>
+                    <li><a href="tel:0731858997"><i class="fa-solid fa-phone" style="font-size: 12px; margin-right: 4px;"></i> 0731858997</a></li>
+                    <li><a href="mailto:developeracaciabooks@gmail.com" style="word-break: break-all;"><i class="fa-solid fa-envelope" style="font-size: 12px; margin-right: 4px;"></i> developeracaciabooks@gmail.com</a></li>
+                </ul>
             </div>
             <div class="footerColumn">
                 <h3>Architecture</h3>
@@ -1003,14 +1178,6 @@
                     <li><a href="#support">System Infrastructure</a></li>
                 </ul>
             </div>
-            <div class="footerColumn">
-                <h3>Corporate</h3>
-                <ul>
-                    <li><a href="#about">Enterprise Mandate</a></li>
-                    <li><a href="#">Security Controls</a></li>
-                    <li><a href="#">Legal / Privacy</a></li>
-                </ul>
-            </div>
         </div>
         <div class="bottomFooter">
             <p>&copy; 2026 Acacia Books Platform Ecosystem. All operational rights reserved globally.</p>
@@ -1019,7 +1186,7 @@
     </footer>
 
     <script>
-        const priceMatrices = {
+       const priceMatrices = {
             books: {
                 free: 0,
                 starter: 2000,
@@ -1030,95 +1197,164 @@
             },
             all: {
                 free: 0,
-                starter: 4500,
-                pro: 9500,
-                business: 15000,
-                enterprise: 24000,
-                allaccess: 38000
+                starter: 3500,
+                pro: 7500,
+                business: 12500,
+                enterprise: 18000,
+                allaccess: 27500
             }
         };
 
         const featureMatrices = {
             books: {
                 free: `
-                    <li><i class="fa-solid fa-book"></i> 📖 Book Catalog Engine (Basic)</li>
-                    <li><i class="fa-solid fa-chart-simple"></i> 📊 Core Metadata Dashboard</li>
-                    <li><i class="fa-solid fa-wallet"></i> 💰 Standard Author Royalties Array</li>
-                    <li class="none"><i class="fa-solid fa-box"></i> 📦 Inventory Balancing Engine: Missing</li>
-                    <li class="none"><i class="fa-solid fa-cart-shopping"></i> 🚚 Sales Channels & Routing: Missing</li>
+                    <li>📊 Dashboard</li>
+                    <li>💰 Funds (Basic)</li>
+                    <li>📈 Reports (Basic)</li>
+                    <li>📦 Inventory (Basic)</li>
+                    <li>👥 Customers (Basic)</li>
+                    <li>🚚 Suppliers (Basic)</li>
+                    <li>🧮 Accountant (Basic)</li>
+                    <li>⚙️ Settings (Basic)</li>
+                    <li>💵 Payroll: None</li>
+                    <li>📧 Secure Mail Router</li>
+                    <li>💳 Expense & Ledger</li>
                 `,
                 starter: `
-                    <li><i class="fa-solid fa-book"></i> 📖 Complete Book Catalog Engine</li>
-                    <li><i class="fa-solid fa-chart-simple"></i> 📊 Dashboard Data Analysis Pipelines</li>
-                    <li><i class="fa-solid fa-wallet"></i> 💰 Multi-format tracking & metadata sync</li>
-                    <li><i class="fa-solid fa-users"></i> 👥 Structural Author Royalties Layers</li>
+                    <li>📊 Dashboard</li>
+                    <li>💰 Funds</li>
+                    <li>📈 Reports</li>
+                    <li>📦 Inventory</li>
+                    <li>👥 Customers</li>
+                    <li>🚚 Suppliers</li>
+                    <li>🧮 Accountant</li>
+                    <li>💵 Payroll</li>
+                    <li>⚙️ Settings</li>
+                    <li>📧 Secure Mail Router</li>
+                    <li>💳 Expense & Ledger</li>
+                    <li>👥 CRM & Engagement (+ KES 1,500)</li>
                 `,
                 pro: `
-                    <li><i class="fa-solid fa-book"></i> 📖 Complete Book Catalog Engine</li>
-                    <li><i class="fa-solid fa-chart-simple"></i> 📊 Complete Metadata Sync Layouts</li>
-                    <li><i class="fa-solid fa-wallet"></i> 💰 Hierarchical indexes & format builds</li>
-                    <li><i class="fa-solid fa-users"></i> 👥 Programmatic bulk ingestion tools</li>
-                    <li><i class="fa-solid fa-calculator"></i> 🧮 Secure accounting Ledger Visibility</li>
+                    <li>📊 Dashboard</li>
+                    <li>💰 Funds</li>
+                    <li>📈 Reports</li>
+                    <li>📦 Inventory</li>
+                    <li>👥 Customers</li>
+                    <li>🚚 Suppliers</li>
+                    <li>🧮 Accountant</li>
+                    <li>💵 Payroll</li>
+                    <li>⚙️ Settings</li>
+                    <li>📧 Secure Mail Router</li>
+                    <li>💳 Expense & Ledger</li>
+                    <li>👥 CRM & Engagement (+ KES 1,500)</li>
+                    <li>🛒 Sales & Distribution (+ KES 1,500)</li>
                 `,
                 business: `
-                    <li><i class="fa-solid fa-book"></i> 📖 Complete Book Catalog Engine</li>
-                    <li><i class="fa-solid fa-chart-simple"></i> 📊 Global scale publishing templates</li>
-                    <li><i class="fa-solid fa-wallet"></i> 💰 Real-time royalties analytics tools</li>
-                    <li><i class="fa-solid fa-calculator"></i> 🧮 Multi-currency structural balance sheets</li>
-                    <li><i class="fa-solid fa-gear"></i> ⚙️ Custom operational metadata definitions</li>
+                    <li>📊 Dashboard</li>
+                    <li>💰 Funds</li>
+                    <li>📈 Reports</li>
+                    <li>📦 Inventory</li>
+                    <li>👥 Customers</li>
+                    <li>🚚 Suppliers</li>
+                    <li>🧮 Accountant</li>
+                    <li>💵 Payroll</li>
+                    <li>⚙️ Settings</li>
+                    <li>📧 Secure Mail Router</li>
+                    <li>💳 Expense & Ledger</li>
+                    <li>👥 CRM & Engagement (+ KES 1,500)</li>
+                    <li>🛒 Sales & Distribution (+ KES 1,500)</li>
+                    <li>📋 Projects & Plans Matrix (+ KES 1,500)</li>
                 `,
                 enterprise: `
-                    <li><i class="fa-solid fa-book"></i> 📖 Infinite Book Catalogs Matrix</li>
-                    <li><i class="fa-solid fa-chart-simple"></i> 📊 Real-time publishing pipeline audits</li>
-                    <li><i class="fa-solid fa-link"></i> 🔗 Custom Catalog REST API integrations</li>
-                    <li><i class="fa-solid fa-laptop-code"></i> 💻 On-premise deployment support infrastructure</li>
+                    <li>📊 Dashboard</li>
+                    <li>💰 Funds</li>
+                    <li>📈 Reports</li>
+                    <li>📦 Inventory</li>
+                    <li>👥 Customers</li>
+                    <li>🚚 Suppliers</li>
+                    <li>🧮 Accountant</li>
+                    <li>💵 Payroll</li>
+                    <li>⚙️ Settings</li>
+                    <li>🔗 Integrations & APIs</li>
+                    <li>💻 On-premise deployment support</li>
+                    <li>📧 Secure Mail Router</li>
+                    <li>💳 Expense & Ledger</li>
+                    <li>👥 CRM & Engagement (+ KES 1,500)</li>
+                    <li>🛒 Sales & Distribution (+ KES 1,500)</li>
+                    <li>📋 Projects & Plans Matrix (+ KES 1,500)</li>
+                    <li>📦 Inventory Balancing (+ KES 1,500)</li>
                 `,
                 allaccess: `
-                    <li><i class="fa-solid fa-book"></i> 📖 Infinite Book Catalogs Matrix</li>
-                    <li><i class="fa-solid fa-link"></i> 🔗 Total API Access Hooks & System Sandbox</li>
-                    <li><i class="fa-solid fa-headset"></i> 💻 Complete Developer Support Helpdesk Network</li>
-                    <li><i class="fa-solid fa-folder-open"></i> 📁 Encrypted secure platform database frames</li>
+                    <li>📊 Dashboard</li>
+                    <li>💰 Funds</li>
+                    <li>📈 Reports</li>
+                    <li>📦 Inventory</li>
+                    <li>👥 Customers</li>
+                    <li>🚚 Suppliers</li>
+                    <li>🧮 Accountant</li>
+                    <li>💵 Payroll</li>
+                    <li>⚙️ Settings</li>
+                    <li>🔗 Integrations & APIs</li>
+                    <li>💻 On-premise deployment & priority support</li>
+                    <li>📁 Files</li>
+                    <li>📧 Secure Mail Router</li>
+                    <li>💳 Expense & Ledger</li>
+                    <li>👥 CRM & Engagement (+ KES 1,500)</li>
+                    <li>🛒 Sales & Distribution (+ KES 1,500)</li>
+                    <li>📋 Projects & Plans Matrix (+ KES 1,500)</li>
+                    <li>📦 Inventory Balancing (+ KES 1,500)</li>
+                    <li>💵 Payroll & Compensation (+ KES 1,500)</li>
                 `
             },
             all: {
                 free: `
-                    <li><i class="fa-solid fa-chart-simple"></i> 📊 Shared Multi-Module Dashboard</li>
-                    <li><i class="fa-solid fa-box"></i> 📦 Basic Asset Routing Grid</li>
-                    <li class="none"><i class="fa-solid fa-wallet"></i> 💰 Ledgers & Expenses Matrix: Inactive</li>
-                    <li class="none"><i class="fa-solid fa-envelope-open-text"></i> ✉️ Cryptographic Mail Router: Inactive</li>
+                    <li>📊 Shared Multi-Module Dashboard</li>
+                    <li>📦 Basic Asset Routing Grid</li>
+                    <li>📧 Secure Mail Router</li>
+                    <li>💳 Expense & Ledger</li>
+                    <li>📚 Standalone Application Engines Active</li>
                 `,
                 starter: `
-                    <li><i class="fa-solid fa-book"></i> 📖 Core Catalog Handling Array</li>
-                    <li><i class="fa-solid fa-cart-shopping"></i> 🛒 Integrated Order Pipelines Engine</li>
-                    <li><i class="fa-solid fa-boxes-stacked"></i> 📦 Multi-warehouse inventory matching</li>
-                    <li><i class="fa-solid fa-wallet"></i> 💰 Ledger accounts & spending controls</li>
+                    <li>📊 Core Catalog Handling Array</li>
+                    <li>🛒 Integrated Order Pipelines Engine</li>
+                    <li>📦 Multi-warehouse inventory matching</li>
+                    <li>💰 Ledger accounts & spending controls</li>
+                    <li>📧 Secure Mail Router</li>
+                    <li>💳 Expense & Ledger</li>
                 `,
                 pro: `
-                    <li><i class="fa-solid fa-book"></i> 📖 Core Catalog Handling Array</li>
-                    <li><i class="fa-solid fa-cart-shopping"></i> 🛒 Programmatic multi-channel billing layers</li>
-                    <li><i class="fa-solid fa-boxes-stacked"></i> 📦 Live cross-site inventory balancing loops</li>
-                    <li><i class="fa-solid fa-wallet"></i> 💰 Multi-departmental structural ledger sets</li>
-                    <li><i class="fa-solid fa-list-check"></i> 📊 Shared milestone resource timelines</li>
+                    <li>📊 Core Catalog Handling Array</li>
+                    <li>🛒 Programmatic multi-channel billing layers</li>
+                    <li>📦 Live cross-site inventory balancing loops</li>
+                    <li>💰 Multi-departmental structural ledger sets</li>
+                    <li>📊 Shared milestone resource timelines</li>
+                    <li>📧 Secure Mail Router</li>
+                    <li>💳 Expense & Ledger</li>
                 `,
                 business: `
-                    <li><i class="fa-solid fa-book"></i> 📖 Full Platform Module Stack Suite</li>
-                    <li><i class="fa-solid fa-cart-shopping"></i> 🛒 Global B2B distribution & tax engines</li>
-                    <li><i class="fa-solid fa-boxes-stacked"></i> 📦 Automated stock forecasting clusters</li>
-                    <li><i class="fa-solid fa-wallet"></i> 💰 Compliance-level ledger and budget control systems</li>
-                    <li><i class="fa-solid fa-list-check"></i> 📊 Complex Gantt resource timeline loading layouts</li>
+                    <li>📊 Full Platform Module Stack Suite</li>
+                    <li>🛒 Global B2B distribution & tax engines</li>
+                    <li>📦 Automated stock forecasting clusters</li>
+                    <li>💰 Compliance-level ledger and budget control systems</li>
+                    <li>📊 Complex Gantt resource timeline loading layouts</li>
+                    <li>📧 Secure Mail Router</li>
+                    <li>💳 Expense & Ledger</li>
                 `,
                 enterprise: `
-                    <li><i class="fa-solid fa-cubes"></i> 🛠️ Absolute Core Modular Architecture Unlocked</li>
-                    <li><i class="fa-solid fa-envelope-open-text"></i> ✉️ DKIM/SPF Cryptographic Secure Mail Rails</li>
-                    <li><i class="fa-solid fa-link"></i> 🔗 Enterprise-level programmatic rest webhooks</li>
-                    <li><i class="fa-solid fa-laptop-code"></i> 💻 Multi-region system cloud deployment setup</li>
+                    <li>🛠️ Absolute Core Modular Architecture Unlocked</li>
+                    <li>🔗 Enterprise-level programmatic rest webhooks</li>
+                    <li>💻 Multi-region system cloud deployment setup</li>
+                    <li>📧 Secure Mail Router</li>
+                    <li>💳 Expense & Ledger</li>
                 `,
                 allaccess: `
-                    <li><i class="fa-solid fa-cubes"></i> 🛠️ Absolute Core Modular Architecture Unlocked</li>
-                    <li><i class="fa-solid fa-envelope-open-text"></i> ✉️ Complete cryptographic secure alert engines</li>
-                    <li><i class="fa-solid fa-link"></i> 🔗 Full REST API, sandbox, and hooks stack framework</li>
-                    <li><i class="fa-solid fa-headset"></i> 💻 24/7 Priority engineering ticket pipelines</li>
-                    <li><i class="fa-solid fa-folder-open"></i> 📁 Infinite encrypted server data pipelines</li>
+                    <li>🛠️ Absolute Core Modular Architecture Unlocked</li>
+                    <li>📧 Complete cryptographic secure alert engines</li>
+                    <li>🔗 Full REST API, sandbox, and hooks stack framework</li>
+                    <li>💻 24/7 Priority engineering ticket pipelines</li>
+                    <li>📁 Infinite encrypted server data pipelines</li>
+                    <li>📧 Secure Mail Router</li>
+                    <li>💳 Expense & Ledger</li>
                 `
             }
         };
@@ -1175,9 +1411,22 @@
             });
         }
 
+        // Programmatic Background Engine Setup
+        function initHeroSlider() {
+            const slides = document.querySelectorAll('.hero-slide');
+            let currentSlide = 0;
+            
+            setInterval(() => {
+                slides[currentSlide].classList.remove('active');
+                currentSlide = (currentSlide + 1) % slides.length;
+                slides[currentSlide].classList.add('active');
+            }, 6000); // Cross-fades every 6 seconds
+        }
+
         window.onload = () => {
             updatePricing();
             initCounters();
+            initHeroSlider();
         };
     </script>
 </body>
